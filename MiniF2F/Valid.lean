@@ -86,14 +86,24 @@ theorem mathd_numbertheory_149 :
     (∑ k in Finset.filter (fun x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50), k) = 66 := by sorry
 #align mathd_numbertheory_149 mathd_numbertheory_149
 
+-- Coclusion in theorem statement
+-- Conclusion too weak
 theorem imo_1984_p2 (a b : ℕ) (h₀ : 0 < a ∧ 0 < b) (h₁ : ¬7 ∣ a) (h₂ : ¬7 ∣ b) (h₃ : ¬7 ∣ a + b)
     (h₄ : 7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) : 19 ≤ a + b := by sorry
 #align imo_1984_p2 imo_1984_p2
+
+example (a b : ℕ) (h₀ : a = 1) (h₁ : b = 18) : (0 < a ∧ 0 < b) ∧ (¬7 ∣ a * b * (a + b)) ∧ (7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) := by
+  rw [h₀, h₁]
+  norm_num
+
+-- example (a b : ℕ) (h₀ : a = _) (h₁ : b = _) : (0 < a ∧ 0 < b) ∧ (¬7 ∣ a * b * (a + b)) ∧ (7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) := by
+--   sorry
 
 theorem amc12a_2008_p4 : (∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k)) = 502 := by
   sorry
 #align amc12a_2008_p4 amc12a_2008_p4
 
+-- This is a geometry problem that shouldn't be formalized like this.
 theorem imo_2006_p6 (a b c : ℝ) :
     a * b * (a ^ 2 - b ^ 2) + b * c * (b ^ 2 - c ^ 2) + c * a * (c ^ 2 - a ^ 2) ≤
       9 * Real.sqrt 2 / 32 * (a ^ 2 + b ^ 2 + c ^ 2) ^ 2 :=
@@ -103,6 +113,7 @@ theorem imo_2006_p6 (a b c : ℝ) :
 theorem mathd_algebra_462 : ((1 : ℚ) / 2 + 1 / 3) * (1 / 2 - 1 / 3) = 5 / 36 := by norm_num
 #align mathd_algebra_462 mathd_algebra_462
 
+-- Good
 theorem imo_1964_p1_2 (n : ℕ) : ¬7 ∣ 2 ^ n + 1 := by sorry
 #align imo_1964_p1_2 imo_1964_p1_2
 
@@ -113,6 +124,7 @@ theorem mathd_numbertheory_221 (S : Finset ℕ)
 theorem mathd_numbertheory_64 : IsLeast { x : ℕ | 30 * x ≡ 42 [MOD 47] } 39 := by sorry
 #align mathd_numbertheory_64 mathd_numbertheory_64
 
+-- Good
 theorem imo_1987_p4 (f : ℕ → ℕ) : ∃ n, f (f n) ≠ n + 1987 := by sorry
 #align imo_1987_p4 imo_1987_p4
 
@@ -134,6 +146,7 @@ theorem amc12_2001_p9 (f : ℝ → ℝ) (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) 
     
 #align amc12_2001_p9 amc12_2001_p9
 
+-- Solution encoded in theorem statement
 theorem imo_1965_p1 (x : ℝ) (h₀ : 0 ≤ x) (h₁ : x ≤ 2 * π)
     (h₂ :
       2 * Real.cos x ≤ abs (Real.sqrt (1 + Real.sin (2 * x)) - Real.sqrt (1 - Real.sin (2 * x))))
@@ -208,6 +221,8 @@ theorem algebra_xmysqpymzsqpzmxsqeqxyz_xpypzp6dvdx3y3z3 (x y z : ℤ)
     x + y + z + 6 ∣ x ^ 3 + y ^ 3 + z ^ 3 := by sorry
 #align algebra_xmysqpymzsqpzmxsqeqxyz_xpypzp6dvdx3y3z3 algebra_xmysqpymzsqpzmxsqeqxyz_xpypzp6dvdx3y3z3
 
+-- Solution encoded in theorem statement.
+-- What can be counted as a "solution"? The set of solutions is infinite. Does it have to be computable?
 theorem imo_1962_p4 (S : Set ℝ)
     (h₀ : S = { x : ℝ | Real.cos x ^ 2 + Real.cos (2 * x) ^ 2 + Real.cos (3 * x) ^ 2 = 1 }) :
     S =
@@ -217,6 +232,7 @@ theorem imo_1962_p4 (S : Set ℝ)
             x = π / 4 + m * π / 2 ∨ x = π / 6 + m * π / 6 ∨ x = 5 * π / 6 + m * π / 6 } :=
   by sorry
 #align imo_1962_p4 imo_1962_p4
+
 
 theorem mathd_numbertheory_236 : 1999 ^ 2000 % 5 = 1 := by sorry
 #align mathd_numbertheory_236 mathd_numbertheory_236
@@ -568,6 +584,8 @@ theorem mathd_algebra_234 (d : ℝ) (h₀ : 27 / 125 * d = 9 / 25) : 3 / 5 * d ^
   by sorry
 #align mathd_algebra_234 mathd_algebra_234
 
+-- Solution encoded in the theorem statement.
+-- The conclusion is too weak.
 theorem imo_1973_p3 (a b : ℝ) (h₀ : ∃ x, x ^ 4 + a * x ^ 3 + b * x ^ 2 + a * x + 1 = 0) :
     4 / 5 ≤ a ^ 2 + b ^ 2 := by sorry
 #align imo_1973_p3 imo_1973_p3
@@ -771,6 +789,8 @@ theorem mathd_algebra_77 (a b : ℝ) (f : ℝ → ℝ) (h₀ : a ≠ 0 ∧ b ≠
     (h₂ : ∀ x, f x = x ^ 2 + a * x + b) (h₃ : f a = 0) (h₄ : f b = 0) : a = 1 ∧ b = -2 := by sorry
 #align mathd_algebra_77 mathd_algebra_77
 
+-- Solution encoded in the theorem statement.
+-- The conclusion is too weak. It doesn't show s can be any number in [1, 2]
 theorem imo_1974_p5 (a b c d s : ℝ) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d)
     (h₁ : s = a / (a + b + d) + b / (a + b + c) + c / (b + c + d) + d / (a + c + d)) :
     1 < s ∧ s < 2 := by sorry
@@ -912,6 +932,7 @@ theorem amc12a_2009_p25 (a : ℕ → ℝ) (h₀ : a 1 = 1) (h₁ : a 2 = 1 / Rea
   by sorry
 #align amc12a_2009_p25 amc12a_2009_p25
 
+-- Geometry probem that shouldn't be formalized like this.
 theorem imo_1961_p1 (x y z a b : ℝ) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z) (h₁ : x ≠ y) (h₂ : y ≠ z)
     (h₃ : z ≠ x) (h₄ : x + y + z = a) (h₅ : x ^ 2 + y ^ 2 + z ^ 2 = b ^ 2) (h₆ : x * y = z ^ 2) :
     0 < a ∧ b ^ 2 < a ^ 2 ∧ a ^ 2 < 3 * b ^ 2 := by sorry
@@ -935,6 +956,8 @@ theorem mathd_algebra_437 (x y : ℝ) (n : ℤ) (h₀ : x ^ 3 = -45) (h₁ : y ^
     (h₃ : ↑n < y) : n = -4 := by sorry
 #align mathd_algebra_437 mathd_algebra_437
 
+-- Solution encoded in the theorem statement.
+-- Conclusion too weak. It doesn't show "if and only if"
 theorem imo_1966_p5 (x a : ℕ → ℝ) (h₀ : a 1 ≠ a 2) (h₁ : a 1 ≠ a 3) (h₂ : a 1 ≠ a 4)
     (h₃ : a 2 ≠ a 3) (h₄ : a 2 ≠ a 4) (h₅ : a 3 ≠ a 4) (h₆ : a 1 > a 2) (h₇ : a 2 > a 3)
     (h₈ : a 3 > a 4)
@@ -984,11 +1007,18 @@ theorem numbertheory_prmdvsneqnsqmodpeq0 (n : ℤ) (p : ℕ) (h₀ : Nat.Prime p
   by sorry
 #align numbertheory_prmdvsneqnsqmodpeq0 numbertheory_prmdvsneqnsqmodpeq0
 
+-- Solution encoded in the theorem statement.
+-- Conclusion too weak. It doesn't show "if and only if"
 theorem imo_1964_p1_1 (n : ℕ) (h₀ : 7 ∣ 2 ^ n - 1) : 3 ∣ n := by sorry
 #align imo_1964_p1_1 imo_1964_p1_1
 
+-- Solution encoded in the theorem statement.
 theorem imo_1990_p3 (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = 3 := by sorry
 #align imo_1990_p3 imo_1990_p3
+
+theorem imo_1990_p3' (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = _ := by 
+  have : n = 3 := by sorry
+  exact this
 
 theorem induction_ineq_nsqlefactn (n : ℕ) (h₀ : 4 ≤ n) : n ^ 2 ≤ n ! :=
   by sorry
@@ -1025,6 +1055,8 @@ theorem amc12a_2020_p13 (a b c : ℕ) (n : NNReal) (h₀ : n ≠ 1) (h₁ : 1 < 
     (h₂ : (n * (n * n ^ (1 / c)) ^ (1 / b)) ^ (1 / a) = (n ^ 25) ^ (1 / 36)) : b = 3 := by sorry
 #align amc12a_2020_p13 amc12a_2020_p13
 
+-- Solution encoded in the theorem statement.
+-- The conclusion is too weak. It doesn't prevent other solutions.
 theorem imo_1977_p5 (a b q r : ℕ) (h₀ : r < a + b) (h₁ : a ^ 2 + b ^ 2 = (a + b) * q + r)
     (h₂ : q ^ 2 + r = 1977) :
     abs ((a : ℤ) - 22) = 15 ∧ abs ((b : ℤ) - 22) = 28 ∨
@@ -1111,6 +1143,8 @@ theorem amc12a_2016_p3 (f : ℝ → ℝ → ℝ)
 theorem mathd_algebra_247 (t s : ℝ) (n : ℤ) (h₀ : t = 2 * s - s ^ 2) (h₁ : s = n ^ 2 - 2 ^ n + 1)
     (n) (_ : n = 3) : t = 0 := by sorry
 #align mathd_algebra_247 mathd_algebra_247
+
+#check (inferInstance : LE ℝ)
 
 theorem algebra_sqineq_2unitcircatblt1 (a b : ℝ) (h₀ : a ^ 2 + b ^ 2 = 2) : a * b ≤ 1 :=
   by sorry
