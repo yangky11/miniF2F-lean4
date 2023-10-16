@@ -1016,9 +1016,9 @@ theorem imo_1964_p1_1 (n : ℕ) (h₀ : 7 ∣ 2 ^ n - 1) : 3 ∣ n := by sorry
 theorem imo_1990_p3 (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = 3 := by sorry
 #align imo_1990_p3 imo_1990_p3
 
-theorem imo_1990_p3' (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = _ := by 
-  have : n = 3 := by sorry
-  exact this
+--theorem imo_1990_p3' (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = _ := by 
+--  have : n = 3 := by sorry
+--  exact this
 
 theorem induction_ineq_nsqlefactn (n : ℕ) (h₀ : 4 ≤ n) : n ^ 2 ≤ n ! :=
   by sorry
