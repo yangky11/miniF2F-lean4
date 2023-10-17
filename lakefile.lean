@@ -5,8 +5,10 @@ package «miniF2F-lean4» {
   -- add package configuration options here
 }
 
-require mathlib from git
-  "https://github.com/leanprover-community/mathlib4"
+
+require aesop from git "https://github.com/JLimperg/aesop" @ "master"
+require LeanInfer from git "https://github.com/lean-dojo/LeanInfer" @ "improve-backend"
+require mathlib from git "https://github.com/leanprover-community/mathlib4"
 
 @[default_target]
 lean_lib «MiniF2F» {

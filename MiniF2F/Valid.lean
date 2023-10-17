@@ -6,6 +6,11 @@ Authors: Kunhao Zheng, Stanislas Polu, David Renshaw, OpenAI GPT-f
 ! This file was ported from Lean 3 source module valid
 -/
 import MiniF2F.Minif2fImport
+import LeanInfer
+import Aesop
+
+open LeanInfer
+
 
 open BigOperators
 
@@ -14,6 +19,18 @@ open Real
 open Nat
 
 open Topology
+
+def cfg : Config := {
+  backend := .native $ .ct2 {
+    generatorUrl? := some ⟨"kaiyuy", "ct2-leandojo-lean4-tacgen-byt5-small"⟩, 
+  }, 
+  decoding := {numReturnSequences := 32}
+}
+
+#eval setConfig cfg
+
+@[aesop 100%]
+def tacGen := LeanInfer.tacGen
 
 theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :
     ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by sorry
