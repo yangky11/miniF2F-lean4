@@ -2,7 +2,7 @@ import Lake
 open Lake DSL
 
 package «miniF2F-lean4» {
-  -- add package configuration options here
+  moreLinkArgs := #["-L./lake-packages/LeanInfer/build/lib", "-L/usr/local/lib", "-lonnxruntime", "-lctranslate2", "-lstdc++"]
 }
 
 
