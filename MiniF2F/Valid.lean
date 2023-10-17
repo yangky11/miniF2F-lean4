@@ -28,6 +28,11 @@ def cfg : Config := {
 }
 
 #eval setConfig cfg
+#eval getConfig
+
+set_option trace.aesop true
+set_option trace.aesop.proof true
+set_option trace.aesop.profile true
 
 @[aesop 100%]
 def tacGen := LeanInfer.tacGen
@@ -37,7 +42,7 @@ theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :
 #align amc12a_2019_p21 amc12a_2019_p21
 
 theorem amc12a_2015_p10 (x y : ℤ) (h₀ : 0 < y) (h₁ : y < x) (h₂ : x + y + x * y = 80) : x = 26 := by
-  sorry
+  aesop (options := {maxRuleApplications := 10})
 #align amc12a_2015_p10 amc12a_2015_p10
 
 theorem amc12a_2008_p8 (x y : ℝ) (h₀ : 0 < x ∧ 0 < y) (h₁ : y ^ 3 = 1)
