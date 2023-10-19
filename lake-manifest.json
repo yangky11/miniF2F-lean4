@@ -2,17 +2,9 @@
  "packagesDir": "lake-packages",
  "packages":
  [{"git":
-   {"url": "https://github.com/JLimperg/aesop",
-    "subDir?": null,
-    "rev": "b601328752091a1cfcaebdd6b6b7c30dc5ffd946",
-    "opts": {},
-    "name": "aesop",
-    "inputRev?": "master",
-    "inherited": false}},
-  {"git":
    {"url": "https://github.com/leanprover-community/mathlib4",
     "subDir?": null,
-    "rev": "c5594244d6b6e5e0c0a479a4501c34b0ea194fce",
+    "rev": "51c7969308516887591959ccbfbdc2c71d086de1",
     "opts": {},
     "name": "mathlib",
     "inputRev?": null,
@@ -20,19 +12,11 @@
   {"git":
    {"url": "https://github.com/lean-dojo/LeanInfer",
     "subDir?": null,
-    "rev": "521a79625bb5a07ce3c1ec76f80d240baca3e1de",
+    "rev": "c29ecd2a33dc588de7a1de686260c9b0ae79e42d",
     "opts": {},
     "name": "LeanInfer",
     "inputRev?": "improve-backend",
     "inherited": false}},
-  {"git":
-   {"url": "https://github.com/leanprover/std4",
-    "subDir?": null,
-    "rev": "85a0d4891518518edfccee16cbceac139efa460c",
-    "opts": {},
-    "name": "std",
-    "inputRev?": "main",
-    "inherited": true}},
   {"git":
    {"url": "https://github.com/gebner/quote4",
     "subDir?": null,
@@ -56,5 +40,21 @@
     "opts": {},
     "name": "proofwidgets",
     "inputRev?": "v0.0.18",
+    "inherited": true}},
+  {"git":
+   {"url": "https://github.com/JLimperg/aesop",
+    "subDir?": null,
+    "rev": "0bd8465d8a5cfdd53c1ff0fd57ca5eaa53eb455c",
+    "opts": {},
+    "name": "aesop",
+    "inputRev?": "master",
+    "inherited": true}},
+  {"git":
+   {"url": "https://github.com/leanprover/std4",
+    "subDir?": null,
+    "rev": "a4b2584dd4468489d14e9731ff303ec6d674873f",
+    "opts": {},
+    "name": "std",
+    "inputRev?": "main",
     "inherited": true}}],
  "name": "«miniF2F-lean4»"}
