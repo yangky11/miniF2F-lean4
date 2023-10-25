@@ -18,6 +18,14 @@
     "inputRev?": "improve-backend",
     "inherited": false}},
   {"git":
+   {"url": "https://github.com/Paper-Proof/paperproof.git",
+    "subDir?": "lean",
+    "rev": "2bbe6be754765e9a96c1683410e917f07ccc2a78",
+    "opts": {},
+    "name": "Paperproof",
+    "inputRev?": "main",
+    "inherited": false}},
+  {"git":
    {"url": "https://github.com/leanprover/std4",
     "subDir?": null,
     "rev": "727fa6aa1113c376ea1873812d1ab5c17a24f1d2",
