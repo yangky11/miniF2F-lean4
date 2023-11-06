@@ -29,10 +29,7 @@ set_option trace.aesop true
 set_option trace.aesop.proof true
 set_option trace.aesop.profile true
 
-#eval Cache.checkGenerator
-
-@[aesop 100%]
-def tacGen := LeanInfer.tacGen
+#init_llm_aesop
 
 -- GPT-4 fails to draft an informal proof
 theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :

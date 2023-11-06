@@ -4,10 +4,18 @@
  [{"git":
    {"url": "https://github.com/leanprover-community/mathlib4",
     "subDir?": null,
-    "rev": "9257586cca3c453ea33261e155792fa0d22d39dd",
+    "rev": "b6ec7450650a5945bf4244751be4a5cf1fee962f",
     "opts": {},
     "name": "mathlib",
     "inputRev?": null,
+    "inherited": false}},
+  {"git":
+   {"url": "https://github.com/lean-dojo/LeanInfer",
+    "subDir?": null,
+    "rev": "799fea589806305a938a7a9bec1aa506166a32bb",
+    "opts": {},
+    "name": "LeanInfer",
+    "inputRev?": "main",
     "inherited": false}},
   {"git":
    {"url": "https://github.com/Paper-Proof/paperproof.git",
@@ -24,14 +32,6 @@
     "opts": {},
     "name": "aesop",
     "inputRev?": "master",
-    "inherited": false}},
-  {"git":
-   {"url": "https://github.com/lean-dojo/LeanInfer",
-    "subDir?": null,
-    "rev": "b4b22fbdde7ceb8810cb60bdb1890e2e086eb371",
-    "opts": {},
-    "name": "LeanInfer",
-    "inputRev?": "main",
     "inherited": false}},
   {"git":
    {"url": "https://github.com/leanprover-community/quote4",
