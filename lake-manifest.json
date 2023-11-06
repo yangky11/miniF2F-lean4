@@ -12,7 +12,7 @@
   {"git":
    {"url": "https://github.com/lean-dojo/LeanInfer",
     "subDir?": null,
-    "rev": "6d6ba0e73dd7007e95dd511b974c896d77bd552d",
+    "rev": "0caa61dcec599a75d0264ddadb0b3811ae97a771",
     "opts": {},
     "name": "LeanInfer",
     "inputRev?": "main",
