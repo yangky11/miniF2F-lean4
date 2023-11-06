@@ -7,8 +7,9 @@ package «miniF2F-lean4» {
 
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4"
-require LeanInfer from git "https://github.com/lean-dojo/LeanInfer" @ "improve-backend"
+require LeanInfer from git "https://github.com/lean-dojo/LeanInfer" @ "main"
 require Paperproof from git "https://github.com/Paper-Proof/paperproof.git"@"main"/"lean"
+require aesop from git "https://github.com/JLimperg/aesop" @ "master"
 
 @[default_target]
 lean_lib «MiniF2F» {

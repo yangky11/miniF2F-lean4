@@ -21,14 +21,7 @@ open Nat
 
 open Topology
 
-def cfg : Config := {
-  backend := .native $ .ct2 {
-    generatorUrl? := some ⟨"kaiyuy", "ct2-leandojo-lean4-tacgen-byt5-small"⟩, 
-  }, 
-  decoding := {numReturnSequences := 64, lengthPenalty := 0.0}
-}
 
-#eval setConfig cfg
 #eval getConfig
 
 set_option maxHeartbeats 0
@@ -36,12 +29,20 @@ set_option trace.aesop true
 set_option trace.aesop.proof true
 set_option trace.aesop.profile true
 
+#eval Cache.checkGenerator
+
 @[aesop 100%]
 def tacGen := LeanInfer.tacGen
 
 -- GPT-4 fails to draft an informal proof
 theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :
-    ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by sorry
+    ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by
+  rw [h₀]
+  have h₁ : (1 + Complex.I) / Real.sqrt 2 = Complex.exp (π / 4 * Complex.I) := by
+    rw [Complex.exp_mul_I]
+    sorry
+  sorry
+
 #align amc12a_2019_p21 amc12a_2019_p21
 
 -- GPT-4 can draft an informal proof
@@ -51,7 +52,7 @@ theorem amc12a_2015_p10 (x y : ℤ) (h₀ : 0 < y) (h₁ : y < x) (h₂ : x + y 
 
 -- GPT-4 can draft an informal proof
 theorem amc12a_2008_p8 (x y : ℝ) (h₀ : 0 < x ∧ 0 < y) (h₁ : y ^ 3 = 1)
-    (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by sorry
+    (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by sorry -- aesop (options := {maxRuleHeartbeats := 20000, terminal := true})
 #align amc12a_2008_p8 amc12a_2008_p8
 -- Stucks if maxHeartbeats is 0
 -- aesop: error in norm unfold: tactic 'simp' failed, nested error:
@@ -68,7 +69,7 @@ theorem aime_1984_p5 (a b : ℝ) (h₀ : Real.logb 8 a + Real.logb 4 (b ^ 2) = 5
     (h₁ : Real.logb 8 b + Real.logb 4 (a ^ 2) = 7) : a * b = 512 := by sorry
 #align aime_1984_p5 aime_1984_p5
 
--- GPT-4-generated proof draft is correct but not helpful. It asks for checking all two-digit numbers. 
+-- GPT-4-generated proof draft is correct but not helpful. It asks for checking all two-digit numbers.
 theorem mathd_numbertheory_780 (m x : ℕ) (h₀ : 10 ≤ m) (h₁ : m ≤ 99) (h₂ : 6 * x % m = 1)
     (h₃ : (x - 6 ^ 2) % m = 0) : m = 43 := by sorry
 #align mathd_numbertheory_780 mathd_numbertheory_780
@@ -92,7 +93,7 @@ theorem mathd_numbertheory_13 (u v : ℕ) (S : Set ℕ)
     (h₂ : IsLeast (S \ {u}) v) : (u + v : ℚ) / 2 = 64 := by sorry
 #align mathd_numbertheory_13 mathd_numbertheory_13
 
-theorem mathd_numbertheory_169 : Nat.gcd 20! 200000 = 40000 := by 
+theorem mathd_numbertheory_169 : Nat.gcd 20! 200000 = 40000 := by
   -- aesop?
   simp_all only
 #align mathd_numbertheory_169 mathd_numbertheory_169
@@ -117,11 +118,11 @@ theorem mathd_algebra_13 (a b : ℝ)
 -- GPT-4 can draft an informal proof
 theorem induction_sum2kp1npqsqm1 (n : ℕ) :
     ∑ k in Finset.range n, (2 * k + 3) = (n + 1) ^ 2 - 1 := by
-  induction' n with n hn --  suggest_tactics  "" 
-  simp --  suggest_tactics  "" 
+  induction' n with n hn --  suggest_tactics  ""
+  simp --  suggest_tactics  ""
   simp [Finset.range_succ]
   rw [hn]
-  simp only [succ_eq_add_one] 
+  simp only [succ_eq_add_one]
   sorry
 #align induction_sum2kp1npqsqm1 induction_sum2kp1npqsqm1
 
@@ -131,7 +132,7 @@ theorem aime_1991_p6 (r : ℝ) (h₀ : (∑ k in Finset.Icc (19 : ℕ) 91, Int.f
 #align aime_1991_p6 aime_1991_p6
 
 theorem mathd_numbertheory_149 :
-    (∑ k in Finset.filter (fun x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50), k) = 66 := by 
+    (∑ k in Finset.filter (fun x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50), k) = 66 := by
     -- aesop?
     simp_all only
 #align mathd_numbertheory_149 mathd_numbertheory_149
@@ -157,11 +158,11 @@ theorem imo_2006_p6 (a b c : ℝ) :
   by sorry
 #align imo_2006_p6 imo_2006_p6
 
-theorem mathd_algebra_462 : ((1 : ℚ) / 2 + 1 / 3) * (1 / 2 - 1 / 3) = 5 / 36 := by 
+theorem mathd_algebra_462 : ((1 : ℚ) / 2 + 1 / 3) * (1 / 2 - 1 / 3) = 5 / 36 := by
   -- aesop?
   simp_all only [one_div]
   norm_num
-                                                                                     
+
 #align mathd_algebra_462 mathd_algebra_462
 
 -- Good
@@ -194,7 +195,7 @@ theorem amc12_2001_p9 (f : ℝ → ℝ) (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) 
     _ = f 500 / (6 / 5) := by rw [h₀]
     _ = 3 / (6 / 5) := by rw [h₁]
     _ = 5 / 2 := by norm_num
-    
+
 #align amc12_2001_p9 amc12_2001_p9
 
 -- Solution encoded in theorem statement
@@ -216,7 +217,7 @@ theorem mathd_numbertheory_48 (b : ℕ) (h₀ : 0 < b) (h₁ : 3 * b ^ 2 + 2 * b
 theorem numbertheory_sqmod4in01d (a : ℤ) : a ^ 2 % 4 = 0 ∨ a ^ 2 % 4 = 1 := by sorry
 #align numbertheory_sqmod4in01d numbertheory_sqmod4in01d
 
-theorem mathd_numbertheory_466 : (∑ k in Finset.range 11, k) % 9 = 1 := by 
+theorem mathd_numbertheory_466 : (∑ k in Finset.range 11, k) % 9 = 1 := by
   -- aesop?
   simp_all only
 #align mathd_numbertheory_466 mathd_numbertheory_466
@@ -225,7 +226,7 @@ theorem mathd_algebra_48 (q e : ℂ) (h₀ : q = 9 - 4 * Complex.I) (h₁ : e = 
     q - e = 12 := by
   -- rw [h₀, h₁]
   -- ring
-  
+
   -- aesop?
   aesop_subst [h₁, h₀]
   simp_all only [sub_sub_sub_cancel_right, sub_neg_eq_add]
@@ -246,7 +247,7 @@ theorem amc12a_2009_p5 (x : ℝ) (h₀ : x ^ 3 - (x + 1) * (x - 1) * x = 5) : x 
 
 theorem mathd_numbertheory_188 : Nat.gcd 180 168 = 12 := by
   -- aesop?
-  simp_all only 
+  simp_all only
 #align mathd_numbertheory_188 mathd_numbertheory_188
 
 theorem mathd_algebra_224 (S : Finset ℕ)
@@ -306,9 +307,9 @@ theorem mathd_numbertheory_236 : 1999 ^ 2000 % 5 = 1 := by
   simp_all only
 #align mathd_numbertheory_236 mathd_numbertheory_236
 
-theorem mathd_numbertheory_24 : (∑ k in Finset.Icc 1 9, 11 ^ k) % 100 = 59 := by 
+theorem mathd_numbertheory_24 : (∑ k in Finset.Icc 1 9, 11 ^ k) % 100 = 59 := by
   -- aesop?
-  simp_all only 
+  simp_all only
 #align mathd_numbertheory_24 mathd_numbertheory_24
 
 theorem algebra_amgm_prod1toneq1_sum1tongeqn (a : ℕ → NNReal) (n : ℕ)
@@ -357,7 +358,7 @@ theorem mathd_algebra_455 (x : ℝ) (h₀ : 2 * (2 * (2 * (2 * x))) = 48) : x = 
   linarith
 #align mathd_algebra_455 mathd_algebra_455
 
-theorem mathd_numbertheory_45 : Nat.gcd 6432 132 + 11 = 23 := by 
+theorem mathd_numbertheory_45 : Nat.gcd 6432 132 + 11 = 23 := by
   -- aesop?
   simp_all only
 #align mathd_numbertheory_45 mathd_numbertheory_45
@@ -438,13 +439,13 @@ theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := b
 #align mathd_numbertheory_335 mathd_numbertheory_335
 
 theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∣ Nat.sqrt 196) :
-    (∑ k in S, k) = 24 := by 
+    (∑ k in S, k) = 24 := by
   -- aesop?
   by_contra h
   simpa using h₀ 0
 #align mathd_numbertheory_35 mathd_numbertheory_35
 
-theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 := by 
+theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 := by
   -- aesop?
   simp_all only [rpow_two]
   ring_nf
@@ -490,7 +491,7 @@ theorem amc12a_2002_p21 (u : ℕ → ℕ) (h₀ : u 0 = 4) (h₁ : u 1 = 7)
 #align amc12a_2002_p21 amc12a_2002_p21
 
 theorem mathd_algebra_192 (q e d : ℂ) (h₀ : q = 11 - 5 * Complex.I) (h₁ : e = 11 + 5 * Complex.I)
-    (h₂ : d = 2 * Complex.I) : q * e * d = 292 * Complex.I := by 
+    (h₂ : d = 2 * Complex.I) : q * e * d = 292 * Complex.I := by
   -- aesop?
   aesop_subst [h₀, h₁, h₂]
   unhygienic ext
@@ -524,8 +525,8 @@ theorem mathd_numbertheory_81 : 71 % 3 = 2 := by
 #align mathd_numbertheory_81 mathd_numbertheory_81
 
 theorem mathd_numbertheory_155 :
-    Finset.card (Finset.filter (fun x => x % 19 = 7) (Finset.Icc 100 999)) = 48 := by 
-    -- aesop? 
+    Finset.card (Finset.filter (fun x => x % 19 = 7) (Finset.Icc 100 999)) = 48 := by
+    -- aesop?
     simp_all only
 #align mathd_numbertheory_155 mathd_numbertheory_155
 
@@ -568,9 +569,9 @@ theorem numbertheory_sumkmulnckeqnmul2pownm1 (n : ℕ) (h₀ : 0 < n) :
     (∑ k in Finset.Icc 1 n, k * Nat.choose n k) = n * 2 ^ (n - 1) := by sorry
 #align numbertheory_sumkmulnckeqnmul2pownm1 numbertheory_sumkmulnckeqnmul2pownm1
 
-theorem mathd_algebra_393 (σ : Equiv ℝ ℝ) (h₀ : ∀ x, σ.1 x = 4 * x ^ 3 + 1) : σ.2 33 = 2 := by 
+theorem mathd_algebra_393 (σ : Equiv ℝ ℝ) (h₀ : ∀ x, σ.1 x = 4 * x ^ 3 + 1) : σ.2 33 = 2 := by
   -- aesop?
-  simp_all only [Equiv.toFun_as_coe_apply, Equiv.invFun_as_coe]
+  simp_all only [Equiv.toFun_as_coe, Equiv.invFun_as_coe]
   rw [σ.symm_apply_eq]
   simp_all only
   norm_cast
@@ -597,7 +598,7 @@ theorem mathd_algebra_15 (s : ℕ → ℕ → ℕ)
 #align mathd_algebra_15 mathd_algebra_15
 
 theorem mathd_numbertheory_211 :
-    Finset.card (Finset.filter (fun n => 6 ∣ 4 * ↑n - (2 : ℤ)) (Finset.range 60)) = 20 := by 
+    Finset.card (Finset.filter (fun n => 6 ∣ 4 * ↑n - (2 : ℤ)) (Finset.range 60)) = 20 := by
     -- aesop?
     simp_all only
 #align mathd_numbertheory_211 mathd_numbertheory_211
@@ -612,7 +613,7 @@ theorem amc12b_2003_p6 (a r : ℝ) (u : ℕ → ℝ) (h₀ : ∀ k, u k = a * r 
 #align amc12b_2003_p6 amc12b_2003_p6
 
 theorem algebra_2rootsintpoly_am10tap11eqasqpam110 (a : ℂ) :
-    (a - 10) * (a + 11) = a ^ 2 + a - 110 := by 
+    (a - 10) * (a + 11) = a ^ 2 + a - 110 := by
   -- aesop?
   simp_all only [Complex.cpow_two]
   ring
@@ -640,7 +641,7 @@ theorem aime_1996_p5 (a b c r s t : ℝ) (f g : ℝ → ℝ)
 #align aime_1996_p5 aime_1996_p5
 
 theorem mathd_algebra_55 (q p : ℝ) (h₀ : q = 2 - 4 + 6 - 8 + 10 - 12 + 14)
-    (h₁ : p = 3 - 6 + 9 - 12 + 15 - 18 + 21) : q / p = 2 / 3 := by 
+    (h₁ : p = 3 - 6 + 9 - 12 + 15 - 18 + 21) : q / p = 2 / 3 := by
     -- aesop?
     aesop_subst [h₀, h₁]
     norm_num
@@ -663,8 +664,8 @@ theorem mathd_algebra_214 (a : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = a * (
 
 theorem mathd_algebra_96 (x y z a : ℝ) (h₀ : 0 < x ∧ 0 < y ∧ 0 < z)
     (h₁ : Real.log x - Real.log y = a) (h₂ : Real.log y - Real.log z = 15)
-    (h₃ : Real.log z - Real.log x = -7) : a = -8 := by 
-  -- aesop? 
+    (h₃ : Real.log z - Real.log x = -7) : a = -8 := by
+  -- aesop?
   aesop_subst h₁
   unhygienic with_reducible aesop_destruct_products
   linarith
@@ -709,8 +710,8 @@ theorem amc12a_2013_p8 (x y : ℝ) (h₀ : x ≠ 0) (h₁ : y ≠ 0) (h₂ : x �
 
 theorem mathd_numbertheory_461 (n : ℕ)
     (h₀ : n = Finset.card (Finset.filter (fun x => Nat.gcd x 8 = 1) (Finset.Icc 1 7))) :
-    3 ^ n % 8 = 1 := by 
-    -- aesop? 
+    3 ^ n % 8 = 1 := by
+    -- aesop?
     aesop_subst h₀
     simp_all only
 #align mathd_numbertheory_461 mathd_numbertheory_461
@@ -769,7 +770,7 @@ theorem aime_1987_p8 :
 #align aime_1987_p8 aime_1987_p8
 
 theorem mathd_numbertheory_136 (n : ℕ) (h₀ : 123 * n + 17 = 39500) : n = 321 := by
-  -- aesop? 
+  -- aesop?
   simp_all only [succ.injEq]
   linarith
 #align mathd_numbertheory_136 mathd_numbertheory_136
@@ -789,7 +790,7 @@ theorem amc12b_2003_p9 (a b : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = a * x 
 #align amc12b_2003_p9 amc12b_2003_p9
 
 theorem algebra_2complexrootspoly_xsqp49eqxp7itxpn7i (x : ℂ) :
-    x ^ 2 + 49 = (x + 7 * Complex.I) * (x + -7 * Complex.I) := by 
+    x ^ 2 + 49 = (x + 7 * Complex.I) * (x + -7 * Complex.I) := by
   -- aesop?
   simp_all only [Complex.cpow_two, neg_mul]
   ring
@@ -814,7 +815,7 @@ theorem mathd_algebra_132 (x : ℝ) (f g : ℝ → ℝ) (h₀ : ∀ x, f x = x +
   linarith
 #align mathd_algebra_132 mathd_algebra_132
 
-theorem mathd_numbertheory_37 : Nat.lcm 9999 100001 = 90900909 := by 
+theorem mathd_numbertheory_37 : Nat.lcm 9999 100001 = 90900909 := by
   -- aesop?
 simp_all only
 #align mathd_numbertheory_37 mathd_numbertheory_37
@@ -852,7 +853,7 @@ theorem algebra_sqineq_36azm9asqle36zsq (z a : ℝ) : 36 * (a * z) - 9 * a ^ 2 �
 #align algebra_sqineq_36azm9asqle36zsq algebra_sqineq_36azm9asqle36zsq
 
 theorem amc12a_2013_p7 (s : ℕ → ℝ) (h₀ : ∀ n, s (n + 2) = s (n + 1) + s n) (h₁ : s 9 = 110)
-    (h₂ : s 7 = 42) : s 4 = 10 := by 
+    (h₂ : s 7 = 42) : s 4 = 10 := by
   -- aesop?
   simp_all only [zero_add]
   linarith
@@ -863,7 +864,7 @@ theorem mathd_algebra_104 (x : ℝ) (h₀ : 125 / 8 = x / 12) : x = 375 / 2 := b
   linarith
 #align mathd_algebra_104 mathd_algebra_104
 
-theorem mathd_numbertheory_252 : 7! % 23 = 3 := by 
+theorem mathd_numbertheory_252 : 7! % 23 = 3 := by
   -- aesop?
   simp_all only
 #align mathd_numbertheory_252 mathd_numbertheory_252
@@ -882,7 +883,7 @@ theorem numbertheory_nckeqnm1ckpnm1ckm1 (n k : ℕ) (h₀ : 0 < n ∧ 0 < k) (h�
 
 theorem algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta (b c d a : ℂ) :
     (a - d) * (a - c) * (a - b) =
-      -((a ^ 2 - (b + c) * a + c * b) * d) + (a ^ 2 - (b + c) * a + c * b) * a := by 
+      -((a ^ 2 - (b + c) * a + c * b) * d) + (a ^ 2 - (b + c) * a + c * b) * a := by
   -- aesop?
   simp_all only [Complex.cpow_two]
   ring
@@ -931,7 +932,7 @@ theorem mathd_algebra_451 (σ : Equiv ℝ ℝ) (h₀ : σ.2 (-15) = 0) (h₁ : �
 #align mathd_algebra_451 mathd_algebra_451
 
 theorem mathd_algebra_144 (a b c d : ℕ) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c ∧ 0 < d) (h₀ : (c : ℤ) - b = d)
-    (h₁ : (b : ℤ) - a = d) (h₂ : a + b + c = 60) (h₃ : a + b > c) : d < 10 := by 
+    (h₁ : (b : ℤ) - a = d) (h₂ : a + b + c = 60) (h₃ : a + b > c) : d < 10 := by
   -- aesop?
   rename_i h₀_1
   simp_all only [gt_iff_lt]
@@ -996,7 +997,7 @@ theorem mathd_algebra_11 (a b : ℝ) (h₀ : a ≠ b) (h₁ : a ≠ 2 * b)
 #align mathd_algebra_11 mathd_algebra_11
 
 theorem amc12a_2003_p1 (u v : ℕ → ℕ) (h₀ : ∀ n, u n = 2 * n + 2) (h₁ : ∀ n, v n = 2 * n + 1) :
-    ((∑ k in Finset.range 2003, u k) - ∑ k in Finset.range 2003, v k) = 2003 := by 
+    ((∑ k in Finset.range 2003, u k) - ∑ k in Finset.range 2003, v k) = 2003 := by
   -- aesop?
   simp_all only [ge_iff_le]
   rfl
@@ -1008,7 +1009,7 @@ theorem numbertheory_aneqprodakp4_anmsqrtanp1eq2 (a : ℕ → ℝ) (h₀ : a 0 =
 #align numbertheory_aneqprodakp4_anmsqrtanp1eq2 numbertheory_aneqprodakp4_anmsqrtanp1eq2
 
 theorem algebra_2rootspoly_apatapbeq2asqp2ab (a b : ℂ) :
-    (a + a) * (a + b) = 2 * a ^ 2 + 2 * (a * b) := by 
+    (a + a) * (a + b) = 2 * a ^ 2 + 2 * (a * b) := by
   -- aesop?
   simp_all only [Complex.cpow_two]
   ring
@@ -1018,7 +1019,7 @@ theorem induction_sum_odd (n : ℕ) : (∑ k in Finset.range n, 2 * k) + 1 = n ^
 #align induction_sum_odd induction_sum_odd
 
 theorem mathd_algebra_568 (a : ℝ) :
-    (a - 1) * (a + 1) * (a + 2) - (a - 2) * (a + 1) = a ^ 3 + a ^ 2 := by 
+    (a - 1) * (a + 1) * (a + 2) - (a - 2) * (a + 1) = a ^ 3 + a ^ 2 := by
   -- aesop?
   simp_all only [rpow_two]
   ring
@@ -1028,7 +1029,7 @@ theorem mathd_algebra_568 (a : ℝ) :
 #align mathd_algebra_568 mathd_algebra_568
 
 theorem mathd_algebra_616 (f g : ℝ → ℝ) (h₀ : ∀ x, f x = x ^ 3 + 2 * x + 1)
-    (h₁ : ∀ x, g x = x - 1) : f (g 1) = 1 := by 
+    (h₁ : ∀ x, g x = x - 1) : f (g 1) = 1 := by
     -- aesop?
     simp_all only [sub_self, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_rpow, mul_zero, add_zero, zero_add]
 #align mathd_algebra_616 mathd_algebra_616
@@ -1065,7 +1066,7 @@ theorem mathd_algebra_509 :
 #align mathd_algebra_509 mathd_algebra_509
 
 theorem mathd_algebra_159 (b : ℝ) (f : ℝ → ℝ)
-    (h₀ : ∀ x, f x = 3 * x ^ 4 - 7 * x ^ 3 + 2 * x ^ 2 - b * x + 1) (h₁ : f 1 = 1) : b = -2 := by 
+    (h₀ : ∀ x, f x = 3 * x ^ 4 - 7 * x ^ 3 + 2 * x ^ 2 - b * x + 1) (h₁ : f 1 = 1) : b = -2 := by
   -- aesop?
   simp_all only [rpow_two, one_rpow, mul_one, one_pow, add_left_eq_self]
   linarith
@@ -1162,7 +1163,7 @@ theorem imo_1966_p4 (n : ℕ) (x : ℝ) (h₀ : ∀ k : ℕ, 0 < k → ∀ m : �
 #align imo_1966_p4 imo_1966_p4
 
 theorem mathd_algebra_67 (f g : ℝ → ℝ) (h₀ : ∀ x, f x = 5 * x + 3) (h₁ : ∀ x, g x = x ^ 2 - 2) :
-    g (f (-1)) = 2 := by 
+    g (f (-1)) = 2 := by
   -- aesop?
   simp_all only [rpow_two, mul_neg, mul_one]
   norm_num
@@ -1200,7 +1201,7 @@ theorem imo_1964_p1_1 (n : ℕ) (h₀ : 7 ∣ 2 ^ n - 1) : 3 ∣ n := by sorry
 theorem imo_1990_p3 (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = 3 := by sorry
 #align imo_1990_p3 imo_1990_p3
 
---theorem imo_1990_p3' (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = _ := by 
+--theorem imo_1990_p3' (n : ℕ) (h₀ : 2 ≤ n) (h₁ : n ^ 2 ∣ 2 ^ n + 1) : n = _ := by
 --  have : n = 3 := by sorry?
 --  exact this
 
@@ -1233,13 +1234,13 @@ theorem amc12a_2002_p12 (f : ℝ → ℝ) (k : ℝ) (a b : ℕ) (h₀ : ∀ x, f
 #align amc12a_2002_p12 amc12a_2002_p12
 
 theorem algebra_manipexpr_2erprsqpesqeqnrpnesq (e r : ℂ) :
-    2 * (e * r) + (e ^ 2 + r ^ 2) = (-r + -e) ^ 2 := by 
+    2 * (e * r) + (e ^ 2 + r ^ 2) = (-r + -e) ^ 2 := by
   -- aesop?
   simp_all only [Complex.cpow_two]
   ring
 #align algebra_manipexpr_2erprsqpesqeqnrpnesq algebra_manipexpr_2erprsqpesqeqnrpnesq
 
-theorem mathd_algebra_119 (d e : ℝ) (h₀ : 2 * d = 17 * e - 8) (h₁ : 2 * e = d - 9) : e = 2 := by 
+theorem mathd_algebra_119 (d e : ℝ) (h₀ : 2 * d = 17 * e - 8) (h₁ : 2 * e = d - 9) : e = 2 := by
   -- aesop?
   linarith
 #align mathd_algebra_119 mathd_algebra_119
@@ -1297,7 +1298,7 @@ theorem amc12b_2002_p3 (S : Finset ℕ)
 #align amc12b_2002_p3 amc12b_2002_p3
 
 theorem mathd_numbertheory_668 (l r : ZMod 7) (h₀ : l = (2 + 3)⁻¹) (h₁ : r = 2⁻¹ + 3⁻¹) :
-    l - r = 1 := by 
+    l - r = 1 := by
     -- aesop?
     aesop_subst [h₁, h₀]
     simp_all only
@@ -1306,7 +1307,7 @@ theorem mathd_numbertheory_668 (l r : ZMod 7) (h₀ : l = (2 + 3)⁻¹) (h₁ : 
 theorem mathd_algebra_251 (x : ℝ) (h₀ : x ≠ 0) (h₁ : 3 + 1 / x = 7 / x) : x = 2 := by
   -- aesop?
   simp_all only [ne_eq, one_div]
-  field_simp [h₀] at h₁ 
+  field_simp [h₀] at h₁
   linarith
 #align mathd_algebra_251 mathd_algebra_251
 
@@ -1348,7 +1349,7 @@ theorem mathd_numbertheory_629 : IsLeast { t : ℕ | 0 < t ∧ Nat.lcm 12 t ^ 3 
 #align mathd_numbertheory_629 mathd_numbertheory_629
 
 theorem amc12a_2017_p2 (x y : ℝ) (h₀ : x ≠ 0) (h₁ : y ≠ 0) (h₂ : x + y = 4 * (x * y)) :
-    1 / x + 1 / y = 4 := by 
+    1 / x + 1 / y = 4 := by
   -- aesop?
   simp_all only [ne_eq, one_div]
   field_simp
@@ -1381,4 +1382,3 @@ theorem mathd_algebra_10 : abs ((120 : ℝ) / 100 * 30 - 130 / 100 * 20) = 10 :=
   -- aesop?
   norm_num
 #align mathd_algebra_10 mathd_algebra_10
-
