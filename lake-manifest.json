@@ -10,14 +10,6 @@
     "inputRev?": null,
     "inherited": false}},
   {"git":
-   {"url": "https://github.com/lean-dojo/LeanInfer",
-    "subDir?": null,
-    "rev": "0caa61dcec599a75d0264ddadb0b3811ae97a771",
-    "opts": {},
-    "name": "LeanInfer",
-    "inputRev?": "main",
-    "inherited": false}},
-  {"git":
    {"url": "https://github.com/Paper-Proof/paperproof.git",
     "subDir?": "lean",
     "rev": "50bd8aa4dcf8d7a3119c511697d8916499dc67e8",
@@ -32,6 +24,14 @@
     "opts": {},
     "name": "aesop",
     "inputRev?": "master",
+    "inherited": false}},
+  {"git":
+   {"url": "https://github.com/lean-dojo/LeanInfer",
+    "subDir?": null,
+    "rev": "dc8e2b7f4deb648733cd20f913bca812ea0ed3f0",
+    "opts": {},
+    "name": "LeanInfer",
+    "inputRev?": "main",
     "inherited": false}},
   {"git":
    {"url": "https://github.com/leanprover/std4",
