@@ -3,73 +3,46 @@ Copyright (c) 2021 OpenAI. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Kunhao Zheng, Stanislas Polu, David Renshaw, OpenAI GPT-f
 
-! This file was ported from Lean 3 source module valid
+! This file was ported from Lean 3 source module valid and edited by Kaiyu Yang.
 -/
 import MiniF2F.Minif2fImport
-import Paperproof
 import LeanInfer
 import Aesop
 
 open LeanInfer
-
-
-open BigOperators
-
-open Real
-
-open Nat
-
-open Topology
-
-
-#eval getConfig
 
 set_option maxHeartbeats 0
 set_option trace.aesop true
 set_option trace.aesop.proof true
 set_option trace.aesop.profile true
 
+#eval getConfig
 #init_llm_aesop
 
--- GPT-4 fails to draft an informal proof
+open BigOperators Real Nat Topology
+
 theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :
     ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by
-  rw [h₀]
-  have h₁ : (1 + Complex.I) / Real.sqrt 2 = Complex.exp (π / 4 * Complex.I) := by
-    rw [Complex.exp_mul_I]
-    sorry
   sorry
 
-#align amc12a_2019_p21 amc12a_2019_p21
+theorem amc12a_2015_p10 (x y : ℤ) (h₀ : 0 < y) (h₁ : y < x) (h₂ : x + y + x * y = 80) : x = 26 := by
+  sorry
 
--- GPT-4 can draft an informal proof
-theorem amc12a_2015_p10 (x y : ℤ) (h₀ : 0 < y) (h₁ : y < x) (h₂ : x + y + x * y = 80) : x = 26 := by sorry
-  -- aesop (options := {maxRuleApplications := 1000})
-#align amc12a_2015_p10 amc12a_2015_p10
-
--- GPT-4 can draft an informal proof
 theorem amc12a_2008_p8 (x y : ℝ) (h₀ : 0 < x ∧ 0 < y) (h₁ : y ^ 3 = 1)
-    (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by sorry -- aesop (options := {maxRuleHeartbeats := 20000, terminal := true})
-#align amc12a_2008_p8 amc12a_2008_p8
--- Stucks if maxHeartbeats is 0
--- aesop: error in norm unfold: tactic 'simp' failed, nested error:
--- (deterministic) timeout at 'simp', maximum number of heartbeats (200000) has been reached (use 'set_option maxHeartbeats <num>' to set the limit)
-
+    (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by
+  sorry
 
 theorem mathd_algebra_182 (y : ℂ) : 7 * (3 * y + 2) = 21 * y + 14 := by
   -- aesop?
   ring
-#align mathd_algebra_182 mathd_algebra_182
 
--- GPT-4 fails to draft an informal proof
 theorem aime_1984_p5 (a b : ℝ) (h₀ : Real.logb 8 a + Real.logb 4 (b ^ 2) = 5)
-    (h₁ : Real.logb 8 b + Real.logb 4 (a ^ 2) = 7) : a * b = 512 := by sorry
-#align aime_1984_p5 aime_1984_p5
+    (h₁ : Real.logb 8 b + Real.logb 4 (a ^ 2) = 7) : a * b = 512 := by
+  sorry
 
--- GPT-4-generated proof draft is correct but not helpful. It asks for checking all two-digit numbers.
-theorem mathd_numbertheory_780 (m x : ℕ) (h₀ : 10 ≤ m) (h₁ : m ≤ 99) (h₂ : 6 * x % m = 1)
-    (h₃ : (x - 6 ^ 2) % m = 0) : m = 43 := by sorry
-#align mathd_numbertheory_780 mathd_numbertheory_780
+theorem mathd_numbertheory_780 (m x : ℤ) (h₀ : 0 ≤ x) (h₁ : 10 ≤ m ∧ m ≤ 99) (h₂ : 6 * x % m = 1)
+    (h₃ : (x - 6 ^ 2) % m = 0) : m = 43 := by
+  sorry
 
 theorem mathd_algebra_116 (k x : ℝ) (h₀ : x = (13 - Real.sqrt 131) / 4)
     (h₁ : 2 * x ^ 2 - 13 * x + k = 0) : k = 19 / 4 := by
@@ -82,23 +55,21 @@ theorem mathd_algebra_116 (k x : ℝ) (h₀ : x = (13 - Real.sqrt 131) / 4)
   rw [Real.mul_self_sqrt _]
   ring
   linarith
-#align mathd_algebra_116 mathd_algebra_116
 
--- GPT-4 fails to draft an informal proof
 theorem mathd_numbertheory_13 (u v : ℕ) (S : Set ℕ)
     (h₀ : ∀ n : ℕ, n ∈ S ↔ 0 < n ∧ 14 * n % 100 = 46) (h₁ : IsLeast S u)
-    (h₂ : IsLeast (S \ {u}) v) : (u + v : ℚ) / 2 = 64 := by sorry
-#align mathd_numbertheory_13 mathd_numbertheory_13
+    (h₂ : IsLeast (S \ {u}) v) : (u + v : ℚ) / 2 = 64 := by
+  sorry
 
 theorem mathd_numbertheory_169 : Nat.gcd 20! 200000 = 40000 := by
   -- aesop?
   simp_all only
-#align mathd_numbertheory_169 mathd_numbertheory_169
 
--- GPT-4 can draft an informal proof
 theorem amc12a_2009_p9 (a b c : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f (x + 3) = 3 * x ^ 2 + 7 * x + 4)
-    (h₁ : ∀ x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by sorry
-#align amc12a_2009_p9 amc12a_2009_p9
+    (h₁ : ∀ x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by
+  sorry
+
+-- here
 
 -- GPT-4 fails to draft an informal proof
 theorem amc12a_2019_p9 (a : ℕ → ℚ) (h₀ : a 1 = 1) (h₁ : a 2 = 3 / 7)
