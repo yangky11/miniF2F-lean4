@@ -26,6 +26,14 @@
     "inputRev?": "master",
     "inherited": false}},
   {"git":
+   {"url": "https://github.com/yangky11/lean-smt",
+    "subDir?": null,
+    "rev": "4f17cb92011afa5b563f1c6599fb30cd8fe67e83",
+    "opts": {},
+    "name": "Smt",
+    "inputRev?": "dev",
+    "inherited": false}},
+  {"git":
    {"url": "https://github.com/lean-dojo/LeanInfer",
     "subDir?": null,
     "rev": "8f926b0634fc08ad01eef4af411dd74ac9d8f218",
