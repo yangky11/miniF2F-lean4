@@ -80,74 +80,45 @@ theorem mathd_algebra_13 (a b : ℝ)
   a = -6 ∧ b = 10 := by
   sorry
 
--- GPT-4 can draft an informal proof
 theorem induction_sum2kp1npqsqm1 (n : ℕ) :
-    ∑ k in Finset.range n, (2 * k + 3) = (n + 1) ^ 2 - 1 := by
-  induction' n with n hn --  suggest_tactics  ""
-  simp --  suggest_tactics  ""
-  simp [Finset.range_succ]
-  rw [hn]
-  simp only [succ_eq_add_one]
+  ∑ k in Finset.range n, (2 * k + 3) = (n + 1) ^ 2 - 1 := by
   sorry
-#align induction_sum2kp1npqsqm1 induction_sum2kp1npqsqm1
 
--- GPT-4 fails to draft an informal proof
 theorem aime_1991_p6 (r : ℝ) (h₀ : (∑ k in Finset.Icc (19 : ℕ) 91, Int.floor (r + k / 100)) = 546) :
-    Int.floor (100 * r) = 743 := by sorry
-#align aime_1991_p6 aime_1991_p6
+  Int.floor (100 * r) = 743 := by
+  sorry
 
 theorem mathd_numbertheory_149 :
-    (∑ k in Finset.filter (fun x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50), k) = 66 := by
-    -- aesop?
-    simp_all only
-#align mathd_numbertheory_149 mathd_numbertheory_149
+  (∑ k in Finset.filter (fun x => x % 8 = 5 ∧ x % 6 = 3) (Finset.range 50), k) = 66 := by
+  simp_all only
 
--- Coclusion in theorem statement
--- Conclusion too weak
--- GPT-4 fails to draft an informal proof
--- Trivial for SMT
 theorem imo_1984_p2 (a b : ℤ) (h₀ : 0 < a ∧ 0 < b) (h₁ : ¬7 ∣ a) (h₂ : ¬7 ∣ b) (h₃ : ¬7 ∣ a + b)
-    (h₄ : 7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) : 19 ≤ a + b := by sorry
-#align imo_1984_p2 imo_1984_p2
+  (h₄ : 7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) : 19 ≤ a + b := by
+  sorry
 
+theorem amc12a_2008_p4 : (∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k)) = 502 := by
+  sorry
 
--- example (a b : ℕ) (h₀ : a = _) (h₁ : b = _) : (0 < a ∧ 0 < b) ∧ (¬7 ∣ a * b * (a + b)) ∧ (7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) := by
---   aesop
-
-theorem amc12a_2008_p4 : (∏ k in Finset.Icc (1 : ℕ) 501, ((4 : ℝ) * k + 4) / (4 * k)) = 502 := by sorry
-#align amc12a_2008_p4 amc12a_2008_p4
-
--- This is a geometry problem that shouldn't be formalized like this.
 theorem imo_2006_p6 (a b c : ℝ) :
-    a * b * (a ^ 2 - b ^ 2) + b * c * (b ^ 2 - c ^ 2) + c * a * (c ^ 2 - a ^ 2) ≤
-      9 * Real.sqrt 2 / 32 * (a ^ 2 + b ^ 2 + c ^ 2) ^ 2 :=
-  by sorry
-#align imo_2006_p6 imo_2006_p6
+  a * b * (a ^ 2 - b ^ 2) + b * c * (b ^ 2 - c ^ 2) + c * a * (c ^ 2 - a ^ 2) ≤
+  9 * Real.sqrt 2 / 32 * (a ^ 2 + b ^ 2 + c ^ 2) ^ 2 := by
+  sorry
 
 theorem mathd_algebra_462 : ((1 : ℚ) / 2 + 1 / 3) * (1 / 2 - 1 / 3) = 5 / 36 := by
   -- aesop?
   simp_all only [one_div]
   norm_num
 
-#align mathd_algebra_462 mathd_algebra_462
-
--- Good
 theorem imo_1964_p1_2 (n : ℕ) : ¬7 ∣ 2 ^ n + 1 := by sorry
-#align imo_1964_p1_2 imo_1964_p1_2
 
 theorem mathd_numbertheory_221 (S : Finset ℕ)
-    (h₀ : ∀ x : ℕ, x ∈ S ↔ 0 < x ∧ x < 1000 ∧ x.divisors.card = 3) : S.card = 11 := by sorry
-#align mathd_numbertheory_221 mathd_numbertheory_221
+  (h₀ : ∀ x : ℕ, x ∈ S ↔ 0 < x ∧ x < 1000 ∧ x.divisors.card = 3) : S.card = 11 := by sorry
 
 theorem mathd_numbertheory_64 : IsLeast { x : ℕ | 30 * x ≡ 42 [MOD 47] } 39 := by sorry
-#align mathd_numbertheory_64 mathd_numbertheory_64
 
--- Good
 theorem imo_1987_p4 (f : ℕ → ℕ) : ∃ n, f (f n) ≠ n + 1987 := by sorry
-#align imo_1987_p4 imo_1987_p4
 
 theorem mathd_numbertheory_33 (n : ℕ) (h₀ : n < 398) (h₁ : n * 7 % 398 = 1) : n = 57 := by sorry
-#align mathd_numbertheory_33 mathd_numbertheory_33
 
 theorem amc12_2001_p9 (f : ℝ → ℝ) (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) = f x / y) (h₁ : f 500 = 3) :
     f 600 = 5 / 2 := by
