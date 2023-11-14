@@ -21,15 +21,16 @@ set_option trace.aesop.profile true
 
 open BigOperators Real Nat Topology
 
+
 theorem amc12a_2019_p21 (z : ℂ) (h₀ : z = (1 + Complex.I) / Real.sqrt 2) :
-    ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by
+  ((∑ k : ℤ in Finset.Icc 1 12, z ^ k ^ 2) * (∑ k : ℤ in Finset.Icc 1 12, 1 / z ^ k ^ 2)) = 36 := by
   sorry
 
 theorem amc12a_2015_p10 (x y : ℤ) (h₀ : 0 < y) (h₁ : y < x) (h₂ : x + y + x * y = 80) : x = 26 := by
   sorry
 
 theorem amc12a_2008_p8 (x y : ℝ) (h₀ : 0 < x ∧ 0 < y) (h₁ : y ^ 3 = 1)
-    (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by
+  (h₂ : 6 * x ^ 2 = 2 * (6 * y ^ 2)) : x ^ 3 = 2 * Real.sqrt 2 := by
   sorry
 
 theorem mathd_algebra_182 (y : ℂ) : 7 * (3 * y + 2) = 21 * y + 14 := by
@@ -37,11 +38,11 @@ theorem mathd_algebra_182 (y : ℂ) : 7 * (3 * y + 2) = 21 * y + 14 := by
   ring
 
 theorem aime_1984_p5 (a b : ℝ) (h₀ : Real.logb 8 a + Real.logb 4 (b ^ 2) = 5)
-    (h₁ : Real.logb 8 b + Real.logb 4 (a ^ 2) = 7) : a * b = 512 := by
+  (h₁ : Real.logb 8 b + Real.logb 4 (a ^ 2) = 7) : a * b = 512 := by
   sorry
 
 theorem mathd_numbertheory_780 (m x : ℤ) (h₀ : 0 ≤ x) (h₁ : 10 ≤ m ∧ m ≤ 99) (h₂ : 6 * x % m = 1)
-    (h₃ : (x - 6 ^ 2) % m = 0) : m = 43 := by
+  (h₃ : (x - 6 ^ 2) % m = 0) : m = 43 := by
   sorry
 
 theorem mathd_algebra_116 (k x : ℝ) (h₀ : x = (13 - Real.sqrt 131) / 4)
@@ -57,8 +58,8 @@ theorem mathd_algebra_116 (k x : ℝ) (h₀ : x = (13 - Real.sqrt 131) / 4)
   linarith
 
 theorem mathd_numbertheory_13 (u v : ℕ) (S : Set ℕ)
-    (h₀ : ∀ n : ℕ, n ∈ S ↔ 0 < n ∧ 14 * n % 100 = 46) (h₁ : IsLeast S u)
-    (h₂ : IsLeast (S \ {u}) v) : (u + v : ℚ) / 2 = 64 := by
+  (h₀ : ∀ n : ℕ, n ∈ S ↔ 0 < n ∧ 14 * n % 100 = 46) (h₁ : IsLeast S u)
+  (h₂ : IsLeast (S \ {u}) v) : (u + v : ℚ) / 2 = 64 := by
   sorry
 
 theorem mathd_numbertheory_169 : Nat.gcd 20! 200000 = 40000 := by
@@ -66,22 +67,18 @@ theorem mathd_numbertheory_169 : Nat.gcd 20! 200000 = 40000 := by
   simp_all only
 
 theorem amc12a_2009_p9 (a b c : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f (x + 3) = 3 * x ^ 2 + 7 * x + 4)
-    (h₁ : ∀ x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by
+  (h₁ : ∀ x, f x = a * x ^ 2 + b * x + c) : a + b + c = 2 := by
   sorry
 
--- here
-
--- GPT-4 fails to draft an informal proof
 theorem amc12a_2019_p9 (a : ℕ → ℚ) (h₀ : a 1 = 1) (h₁ : a 2 = 3 / 7)
-    (h₂ : ∀ n, a (n + 2) = a n * a (n + 1) / (2 * a n - a (n + 1))) :
-    ↑(a 2019).den + (a 2019).num = 8078 := by sorry
-#align amc12a_2019_p9 amc12a_2019_p9
+  (h₂ : ∀ n, a (n + 2) = a n * a (n + 1) / (2 * a n - a (n + 1))) :
+  ↑(a 2019).den + (a 2019).num = 8078 := by
+  sorry
 
--- GPT-4 can draft an informal proof
 theorem mathd_algebra_13 (a b : ℝ)
-    (h₀ : ∀ x, x - 3 ≠ 0 ∧ x - 5 ≠ 0 → 4 * x / (x ^ 2 - 8 * x + 15) = a / (x - 3) + b / (x - 5)) :
-    a = -6 ∧ b = 10 := by sorry
-#align mathd_algebra_13 mathd_algebra_13
+  (h₀ : ∀ x, x - 3 ≠ 0 ∧ x - 5 ≠ 0 → 4 * x / (x ^ 2 - 8 * x + 15) = a / (x - 3) + b / (x - 5)) :
+  a = -6 ∧ b = 10 := by
+  sorry
 
 -- GPT-4 can draft an informal proof
 theorem induction_sum2kp1npqsqm1 (n : ℕ) :
@@ -108,7 +105,8 @@ theorem mathd_numbertheory_149 :
 -- Coclusion in theorem statement
 -- Conclusion too weak
 -- GPT-4 fails to draft an informal proof
-theorem imo_1984_p2 (a b : ℕ) (h₀ : 0 < a ∧ 0 < b) (h₁ : ¬7 ∣ a) (h₂ : ¬7 ∣ b) (h₃ : ¬7 ∣ a + b)
+-- Trivial for SMT
+theorem imo_1984_p2 (a b : ℤ) (h₀ : 0 < a ∧ 0 < b) (h₁ : ¬7 ∣ a) (h₂ : ¬7 ∣ b) (h₃ : ¬7 ∣ a + b)
     (h₄ : 7 ^ 7 ∣ (a + b) ^ 7 - a ^ 7 - b ^ 7) : 19 ≤ a + b := by sorry
 #align imo_1984_p2 imo_1984_p2
 
@@ -1285,7 +1283,7 @@ theorem mathd_numbertheory_84 : Int.floor ((9 : ℝ) / 160 * 100) = 5 := by
   all_goals norm_num
 #align mathd_numbertheory_84 mathd_numbertheory_84
 
-theorem mathd_numbertheory_412 (x y : ℕ) (h₀ : x % 19 = 4) (h₁ : y % 19 = 7) :
+theorem mathd_numbertheory_412 (x y : ℤ) (h₀ : x % 19 = 4) (h₁ : y % 19 = 7) :
     (x + 1) ^ 2 * (y + 5) ^ 3 % 19 = 13 := by sorry
 #align mathd_numbertheory_412 mathd_numbertheory_412
 
