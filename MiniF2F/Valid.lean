@@ -310,7 +310,7 @@ theorem mathd_algebra_69 (rows seats : ℕ) (h₀ : rows * seats = 450)
   (h₁ : (rows + 5) * (seats - 3) = 450) : rows = 25 := by
   sorry
 
-theorem mathd_algebra_433 (f : ℝ → ℝ) (h₀ : ∀ x, f x = 3 * Real.sqrt (2 * x - 7) - 8) : f 8 = 1 := by
+theorem mathd_algebra_433 (f : ℝ → ℝ) (h₀ : ∀ x, f x = 3 * Real.sqrt (2 * x - 7) - 8) : f 8 = 19 := by
   sorry
 
 theorem mathd_algebra_126 (x y : ℝ) (h₀ : 2 * 3 = x - 9) (h₁ : 2 * -5 = y + 1) : x = 15 ∧ y = -11 := by
