@@ -32,7 +32,6 @@ import Mathlib.Data.Nat.Basic
 import Mathlib.Data.Nat.Choose.Basic
 import Mathlib.Data.Nat.Digits
 import Mathlib.Data.Nat.Factorial.Basic
-import Mathlib.Data.Nat.Fib
 import Mathlib.Data.Nat.ModEq
 import Mathlib.Data.Nat.Multiplicity
 import Mathlib.Data.Nat.Parity
@@ -52,21 +51,11 @@ import Mathlib.Data.Set.Finite
 import Mathlib.Data.Sym.Sym2
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Dynamics.FixedPoints.Basic
---import Mathlib.FieldTheory.Finite.Basic
-/-
-import Mathlib.Geometry.Euclidean.Basic
-import Mathlib.Geometry.Euclidean.Circumcenter
-import Mathlib.Geometry.Euclidean.MongePoint
--/
 import Mathlib.LinearAlgebra.AffineSpace.AffineMap
 import Mathlib.LinearAlgebra.AffineSpace.Independent
 import Mathlib.LinearAlgebra.AffineSpace.Ordered
 import Mathlib.LinearAlgebra.FiniteDimensional
 import Mathlib.Logic.Equiv.Basic
---import Mathlib.MeasureTheory.Integral.IntervalIntegral
---import Mathlib.NumberTheory.ArithmeticFunction
---import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
---import Mathlib.NumberTheory.PrimesCongruentOne
 import Mathlib.Order.Filter.Basic
 import Mathlib.Order.LocallyFinite
 import Mathlib.Order.WellFounded
