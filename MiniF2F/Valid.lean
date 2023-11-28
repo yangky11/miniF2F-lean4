@@ -1082,7 +1082,6 @@ theorem numbertheory_2dvd4expn (n : ℕ) (h₀ : n ≠ 0) : 2 ∣ 4 ^ n := by
   · norm_num
   apply dvd_pow
   norm_num
-  norm_cast --  suggest_tactics  ""
 
 theorem amc12a_2010_p11 (x b : ℝ) (h₀ : 0 < b) (h₁ : (7 : ℝ) ^ (x + 7) = 8 ^ x)
   (h₂ : x = Real.logb b (7 ^ 7)) : b = 8 / 7 := by
