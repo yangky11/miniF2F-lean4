@@ -6,18 +6,15 @@ Authors: Kunhao Zheng, Kudzo Ahegbebu, Stanislas Polu, David Renshaw, OpenAI GPT
 ! This file was ported from Lean 3 source module test and edited by Jiacheng Chen.
 -/
 import MiniF2F.Minif2fImport
-import LeanInfer
-import Aesop
+import LeanCopilot
 
-open LeanInfer
+open LeanCopilot
 
 set_option maxHeartbeats 0
 set_option trace.aesop true
 set_option trace.aesop.proof true
 set_option trace.aesop.profile true
 
-#eval getConfig
-#init_llm_aesop
 
 open Nat Real Rat BigOperators
 

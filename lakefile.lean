@@ -3,8 +3,8 @@ open Lake DSL
 
 package «miniF2F-lean4» {
   moreLinkArgs := #[
-    "-L./.lake/packages/LeanInfer/.lake/build/lib",
-    "-lonnxruntime", "-lctranslate2"
+    "-L./.lake/packages/LeanCopilot/.lake/build/lib",
+    "-lctranslate2"
   ]
 }
 
@@ -14,4 +14,4 @@ lean_lib «MiniF2F» {
 }
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4" @ "master"
-require LeanInfer from git "https://github.com/lean-dojo/LeanInfer" @ "v0.1.0"
+require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot" @ "v1.0.0"
