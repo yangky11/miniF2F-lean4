@@ -4,6 +4,6 @@
 git clone https://github.com/yangky11/miniF2F-lean4
 cd miniF2F-lean4
 lake exe cache get
-lake script run LeanCopilot/download
+lake exe LeanCopilot/download
 lake build
 ```
