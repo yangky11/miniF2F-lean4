@@ -14,4 +14,4 @@ lean_lib «MiniF2F» {
 }
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4" @ "master"
-require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot" @ "v1.0.0"
+require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot" @ "v1.1.1"
