@@ -6,14 +6,6 @@ Authors: Kunhao Zheng, Stanislas Polu, David Renshaw, OpenAI GPT-f
 ! This file was ported from Lean 3 source module valid and edited by Kaiyu Yang.
 -/
 import MiniF2F.Minif2fImport
-import LeanCopilot
-
-open LeanCopilot
-
-set_option maxHeartbeats 0
-set_option trace.aesop true
-set_option trace.aesop.proof true
-set_option trace.aesop.profile true
 
 
 open BigOperators Real Nat Topology
@@ -342,7 +334,6 @@ theorem algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x :
 
 theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := by
   rw [Nat.mul_mod, h₀]
-  norm_num
 
 theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∣ Nat.sqrt 196) :
     (∑ k in S, k) = 24 := by
@@ -355,7 +346,7 @@ theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 := by
 
 theorem mathd_algebra_327 (a : ℝ) (h₀ : 1 / 5 * abs (9 + 2 * a) < 1) : -7 < a ∧ a < -2 := by
   have h₁ := (mul_lt_mul_left (show 0 < (5 : ℝ) by linarith)).mpr h₀
-  have h₂ : abs (9 + 2 * a) < 5; linarith
+  have h₂ : abs (9 + 2 * a) < 5 := by linarith
   have h₃ := abs_lt.mp h₂
   cases' h₃ with h₃ h₄
   constructor <;> nlinarith
@@ -391,17 +382,7 @@ theorem amc12a_2002_p21 (u : ℕ → ℕ) (h₀ : u 0 = 4) (h₁ : u 1 = 7)
 theorem mathd_algebra_192 (q e d : ℂ) (h₀ : q = 11 - 5 * Complex.I) (h₁ : e = 11 + 5 * Complex.I)
     (h₂ : d = 2 * Complex.I) : q * e * d = 292 * Complex.I := by
   -- aesop?
-  aesop_subst [h₀, h₁, h₂]
-  unhygienic ext
-  · simp_all only [Complex.mul_re, Complex.sub_re, Complex.re_ofNat, Complex.I_re, mul_zero, Complex.im_ofNat,
-      Complex.I_im, mul_one, sub_self, sub_zero, Complex.add_re, add_zero, Complex.sub_im, Complex.mul_im, zero_sub,
-      Complex.add_im, zero_add, neg_mul, sub_neg_eq_add, neg_eq_zero, _root_.mul_eq_zero, OfNat.ofNat_ne_zero,
-      or_false]
-    norm_num
-  · simp_all only [Complex.mul_im, Complex.mul_re, Complex.sub_re, Complex.re_ofNat, Complex.I_re, mul_zero,
-      Complex.im_ofNat, Complex.I_im, mul_one, sub_self, sub_zero, Complex.add_re, add_zero, Complex.sub_im,
-      zero_sub, Complex.add_im, zero_add, neg_mul, sub_neg_eq_add]
-    norm_num
+  sorry
 
 theorem amc12b_2002_p6 (a b : ℝ) (h₀ : a ≠ 0 ∧ b ≠ 0)
   (h₁ : ∀ x, x ^ 2 + a * x + b = (x - a) * (x - b)) : a = 1 ∧ b = -2 := by
@@ -438,15 +419,7 @@ theorem mathd_numbertheory_42 (S : Set ℕ) (u v : ℕ) (h₀ : ∀ a : ℕ, a �
 theorem mathd_algebra_110 (q e : ℂ) (h₀ : q = 2 - 2 * Complex.I) (h₁ : e = 5 + 5 * Complex.I) :
     q * e = 20 := by
   -- aesop?
-  aesop_subst [h₀, h₁]
-  unhygienic ext
-  · simp_all only [Complex.mul_re, Complex.sub_re, Complex.re_ofNat, Complex.I_re, mul_zero, Complex.im_ofNat,
-      Complex.I_im, mul_one, sub_self, sub_zero, Complex.add_re, add_zero, Complex.sub_im, Complex.mul_im, zero_sub,
-      Complex.add_im, zero_add, neg_mul, sub_neg_eq_add]
-    norm_num
-  · simp_all only [Complex.mul_im, Complex.sub_re, Complex.re_ofNat, Complex.mul_re, Complex.I_re, mul_zero,
-      Complex.im_ofNat, Complex.I_im, mul_one, sub_self, sub_zero, Complex.add_im, add_zero, zero_add, Complex.sub_im,
-      zero_sub, Complex.add_re, neg_mul, add_right_neg]
+  sorry
 
 theorem amc12b_2021_p21 (S : Finset ℝ)
   (h₀ : ∀ x : ℝ, x ∈ S ↔ 0 < x ∧ x ^ (2 : ℝ) ^ Real.sqrt 2 = Real.sqrt 2 ^ (2 : ℝ) ^ x) :
@@ -557,7 +530,7 @@ theorem amc12_2001_p2 (a b n : ℕ) (h₀ : 1 ≤ a ∧ a ≤ 9) (h₁ : 0 ≤ b
   (h₃ : n = a * b + a + b) : b = 9 := by
   rw [h₂] at h₃
   simp at h₃
-  have h₄ : 10 * a = (b + 1) * a; linarith
+  have h₄ : 10 * a = (b + 1) * a := by linarith
   simp at h₄
   cases' h₄ with h₅ h₆
   linarith
@@ -745,7 +718,6 @@ theorem algebra_3rootspoly_amdtamctambeqnasqmbpctapcbtdpasqmbpctapcbta (b c d a 
     (a - d) * (a - c) * (a - b) =
       -((a ^ 2 - (b + c) * a + c * b) * d) + (a ^ 2 - (b + c) * a + c * b) * a := by
   -- TODO: `aesop` stucks here but `suggest_tactics` works
-  suggest_tactics
   ring
 
 theorem mathd_numbertheory_403 : (∑ k in Nat.properDivisors 198, k) = 270 := by
@@ -838,13 +810,7 @@ theorem imo_1967_p3 (k m n : ℕ) (c : ℕ → ℕ) (h₀ : 0 < k ∧ 0 < m ∧ 
 
 theorem mathd_algebra_11 (a b : ℝ) (h₀ : a ≠ b) (h₁ : a ≠ 2 * b)
     (h₂ : (4 * a + 3 * b) / (a - 2 * b) = 5) : (a + 11 * b) / (a - b) = 2 := by
-  rw [eq_comm]
-  refine' (eq_div_iff _).mpr _
-  exact sub_ne_zero_of_ne h₀
-  rw [eq_comm] at h₂
-  suffices : a = 13 * b; linarith
-  have key : 5 * (a - 2 * b) = 4 * a + 3 * b; rwa [(eq_div_iff (sub_ne_zero_of_ne h₁)).mp]
-  linarith
+  sorry
 
 theorem amc12a_2003_p1 (u v : ℕ → ℕ) (h₀ : ∀ n, u n = 2 * n + 2) (h₁ : ∀ n, v n = 2 * n + 1) :
     ((∑ k in Finset.range 2003, u k) - ∑ k in Finset.range 2003, v k) = 2003 := by
@@ -873,7 +839,7 @@ theorem mathd_algebra_568 (a : ℝ) :
 theorem mathd_algebra_616 (f g : ℝ → ℝ) (h₀ : ∀ x, f x = x ^ 3 + 2 * x + 1)
     (h₁ : ∀ x, g x = x - 1) : f (g 1) = 1 := by
   -- aesop?
-  simp_all only [sub_self, ne_eq, OfNat.ofNat_ne_zero, not_false_eq_true, zero_pow', mul_zero, add_zero, zero_add]
+  simp_all
 
 theorem mathd_numbertheory_690 :
     IsLeast { a : ℕ | 0 < a ∧ a ≡ 2 [MOD 3] ∧ a ≡ 4 [MOD 5] ∧ a ≡ 6 [MOD 7] ∧ a ≡ 8 [MOD 9] } 314 := by
@@ -1177,7 +1143,7 @@ theorem mathd_algebra_51 (a b : ℝ) (h₀ : 0 < a ∧ 0 < b) (h₁ : a + b = 35
   -- aesop?
   aesop_subst h₂
   unhygienic with_reducible aesop_destruct_products
-  simp_all only [gt_iff_lt, zero_lt_mul_right]
+  simp_all only [gt_iff_lt, mul_pos_iff_of_pos_right]
   linarith
 
 theorem mathd_algebra_10 : abs ((120 : ℝ) / 100 * 30 - 130 / 100 * 20) = 10 := by

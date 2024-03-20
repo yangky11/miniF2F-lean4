@@ -5,7 +5,7 @@ import Mathlib.Algebra.BigOperators.Basic
 import Mathlib.Algebra.BigOperators.Order
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.GeomSum
-import Mathlib.Algebra.Group.Pi
+import Mathlib.Algebra.Group.Pi.Basic
 import Mathlib.Algebra.Group.Commute.Basic
 import Mathlib.Algebra.GroupPower.Basic
 import Mathlib.Algebra.GroupPower.Identities
@@ -40,7 +40,7 @@ import Mathlib.Data.PNat.Basic
 import Mathlib.Data.PNat.Prime
 import Mathlib.Data.Polynomial.Basic
 import Mathlib.Data.Polynomial.Eval
-import Mathlib.Data.Rat.Basic
+import Mathlib.Data.Rat.Lemmas
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Irrational
 import Mathlib.Data.Real.NNReal
@@ -59,5 +59,3 @@ import Mathlib.Order.LocallyFinite
 import Mathlib.Order.WellFounded
 import Mathlib.Topology.Basic
 import Mathlib.Topology.Instances.NNReal
-
-import Aesop
