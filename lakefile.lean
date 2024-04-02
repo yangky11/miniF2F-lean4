@@ -14,3 +14,4 @@ lean_lib «MiniF2F» {
 }
 
 require mathlib from git "https://github.com/leanprover-community/mathlib4" @ "master"
+require smt from git "https://github.com/yangky11/lean-smt.git" @ "dev"
