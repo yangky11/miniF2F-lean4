@@ -67,7 +67,7 @@
    {"url": "https://github.com/yangky11/lean-smt.git",
    "type": "git",
    "subDir": null,
-   "rev": "171f928d625ab78ec470d3748b69978be91b3b7f",
+   "rev": "bf758db52cccfe9ff796cdefea124b39fd26a648",
    "name": "smt",
    "manifestFile": "lake-manifest.json",
    "inputRev": "dev",
