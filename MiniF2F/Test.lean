@@ -849,7 +849,7 @@ theorem amc12a_2021_p8
 
 theorem algebra_ineq_nto1onlt2m1on
   (n : ℕ) :
-  n^(1 / n) < 2 - 1 / n := by sorry
+  (n : ℝ) ^ (1 / n : ℝ) < 2 - 1 / n := by sorry
 
 theorem amc12b_2002_p19
   (a b c: ℝ)
@@ -965,7 +965,7 @@ theorem mathd_algebra_332
 
 theorem algebra_cubrtrp1oncubrtreq3_rcubp1onrcubeq5778
   (r : ℝ)
-  (h₀ : r^(1 / 3) + 1 / r^(1 / 3) = 3) :
+  (h₀ : r^(1 / 3: ℝ) + 1 / r^(1 / 3: ℝ) = 3) :
   r^3 + 1 / r^3 = 5778 := by sorry
 
 theorem mathd_algebra_293
@@ -997,7 +997,7 @@ theorem aime_1988_p8
 theorem mathd_algebra_114
   (a : ℝ)
   (h₀ : a = 8) :
-  (16 * (a^2)^(1 / 3))^(1 / 3) = 4 := by sorry
+  (16 * (a^2) ^ (1 / 3 : ℝ)) ^ (1 / 3 : ℝ) = 4 := by sorry
 
 theorem imo_2019_p1
   (f : ℤ → ℤ) :
