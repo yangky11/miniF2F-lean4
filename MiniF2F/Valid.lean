@@ -1,10 +1,11 @@
-/-
+ /-
 Copyright (c) 2021 OpenAI. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Kunhao Zheng, Stanislas Polu, David Renshaw, OpenAI GPT-f
 
 ! This file was ported from Lean 3 source module valid and edited by Kaiyu Yang.
 -/
+import LeanCopilot
 import MiniF2F.Minif2fImport
 
 
@@ -108,7 +109,7 @@ theorem imo_1987_p4 (f : ℕ → ℕ) : ∃ n, f (f n) ≠ n + 1987 := by
   sorry
 
 theorem mathd_numbertheory_33 (n : ℕ) (h₀ : n < 398) (h₁ : n * 7 % 398 = 1) : n = 57 := by
-  sorry
+  omega
 
 theorem amc12_2001_p9 (f : ℝ → ℝ) (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) = f x / y) (h₁ : f 500 = 3) :
     f 600 = 5 / 2 := by
@@ -177,7 +178,10 @@ theorem mathd_numbertheory_32 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∈ S ↔ 
 
 theorem mathd_algebra_422 (x : ℝ) (σ : Equiv ℝ ℝ) (h₀ : ∀ x, σ.1 x = 5 * x - 12)
   (h₁ : σ.1 (x + 1) = σ.2 x) : x = 47 / 24 := by
-  sorry
+  simp_all only [Equiv.toFun_as_coe, Equiv.invFun_as_coe]
+  have h₂ := σ.apply_symm_apply x
+  simp_all only
+  linarith
 
 theorem amc12b_2002_p11 (a b : ℕ) (h₀ : Nat.Prime a) (h₁ : Nat.Prime b) (h₂ : Nat.Prime (a + b))
   (h₃ : Nat.Prime (a - b)) : Nat.Prime (a + b + (a - b + (a + b))) := by
@@ -226,7 +230,9 @@ theorem mathd_algebra_101 (x : ℝ) (h₀ : x ^ 2 - 5 * x - 4 ≤ 10) : x ≥ -2
 
 theorem mathd_numbertheory_257 (x : ℕ) (h₀ : 1 ≤ x ∧ x ≤ 100)
     (h₁ : 77 ∣ (∑ k in Finset.range 101, k) - x) : x = 45 := by
-  sorry
+  obtain ⟨left, right⟩ := h₀
+  norm_num at h₁
+  omega
 
 theorem amc12_2000_p5 (x p : ℝ) (h₀ : x < 2) (h₁ : abs (x - 2) = p) : x - p = 2 - 2 * p := by
   suffices abs (x - 2) = -(x - 2) by
@@ -265,7 +271,9 @@ theorem mathd_numbertheory_739 : 9! % 10 = 0 := by
 
 theorem mathd_algebra_245 (x : ℝ) (h₀ : x ≠ 0) :
   (4 / x)⁻¹ * (3 * x ^ 3 / x) ^ 2 * (1 / (2 * x))⁻¹ ^ 3 = 18 * x ^ 8 := by
-  sorry
+  simp_all only [ne_eq, inv_div, div_pow, one_div, mul_inv_rev, inv_inv]
+  field_simp
+  ring
 
 theorem algebra_apb4leq8ta4pb4 (a b : ℝ) (h₀ : 0 < a ∧ 0 < b) : (a + b) ^ 4 ≤ 8 * (a ^ 4 + b ^ 4) := by
   sorry
@@ -395,7 +403,10 @@ theorem mathd_numbertheory_42 (S : Set ℕ) (u v : ℕ) (h₀ : ∀ a : ℕ, a �
 
 theorem mathd_algebra_110 (q e : ℂ) (h₀ : q = 2 - 2 * Complex.I) (h₁ : e = 5 + 5 * Complex.I) :
     q * e = 20 := by
-  sorry
+  subst h₁ h₀
+  ring
+  simp_all only [Complex.I_sq, neg_mul, one_mul, sub_neg_eq_add]
+  norm_num
 
 theorem amc12b_2021_p21 (S : Finset ℝ)
   (h₀ : ∀ x : ℝ, x ∈ S ↔ 0 < x ∧ x ^ (2 : ℝ) ^ Real.sqrt 2 = Real.sqrt 2 ^ (2 : ℝ) ^ x) :
@@ -514,7 +525,12 @@ theorem algebra_binomnegdiscrineq_10alt28asqp1 (a : ℝ) : 10 * a ≤ 28 * a ^ 2
 
 theorem mathd_numbertheory_284 (a b : ℕ) (h₀ : 1 ≤ a ∧ a ≤ 9 ∧ b ≤ 9)
   (h₁ : 10 * a + b = 2 * (a + b)) : 10 * a + b = 18 := by
-  sorry
+  simp_all only
+  obtain ⟨left, right⟩ := h₀
+  obtain ⟨left_1, right⟩ := right
+  rw [← h₁]
+  simp_all only
+  omega
 
 theorem amc12a_2009_p2 : 1 + 1 / (1 + 1 / (1 + 1)) = (5 : ℚ) / 3 := by
   simp_all only [one_div]
@@ -565,7 +581,10 @@ theorem mathd_algebra_536 : ↑3! * ((2 : ℝ) ^ 3 + Real.sqrt 9) / 2 = (33 : �
   sorry
 
 theorem mathd_algebra_22 : Real.logb (5 ^ 2) (5 ^ 4) = 2 := by
-  sorry
+  rw [logb]
+  simp_all only [Real.log_pow, cast_ofNat]
+  field_simp
+  ring
 
 theorem numbertheory_xsqpysqintdenomeq (x y : ℚ) (h₀ : (x ^ 2 + y ^ 2).den = 1) : x.den = y.den := by
   sorry
@@ -626,10 +645,10 @@ theorem aime_1983_p9 (x : ℝ) (h₀ : 0 < x ∧ x < Real.pi) :
   sorry
 
 theorem mathd_algebra_37 (x y : ℝ) (h₀ : x + y = 7) (h₁ : 3 * x + y = 45) : x ^ 2 - y ^ 2 = 217 := by
-  sorry
+  nlinarith
 
 theorem mathd_numbertheory_458 (n : ℕ) (h₀ : n % 8 = 7) : n % 4 = 3 := by
-  sorry
+  omega
 
 theorem amc12a_2008_p15 (k : ℕ) (h₀ : k = 2008 ^ 2 + 2 ^ 2008) : (k ^ 2 + 2 ^ k) % 10 = 6 := by
   sorry
@@ -804,7 +823,10 @@ theorem mathd_numbertheory_405 (a b c : ℕ) (t : ℕ → ℕ) (h₀ : t 0 = 0) 
 
 theorem mathd_numbertheory_110 (a b : ℕ) (h₀ : 0 < a ∧ 0 < b ∧ b ≤ a) (h₁ : (a + b) % 10 = 2)
   (h₂ : (2 * a + b) % 10 = 1) : (a - b) % 10 = 6 := by
-  sorry
+  obtain ⟨left, right⟩ := h₀
+  obtain ⟨left_1, right⟩ := right
+  symm
+  omega
 
 theorem amc12a_2003_p25 (a b : ℝ) (f : ℝ → ℝ) (h₀ : 0 < b)
   (h₁ : ∀ x, f x = Real.sqrt (a * x ^ 2 + b * x)) (h₂ : { x | 0 ≤ f x } = f '' { x | 0 ≤ f x }) :
@@ -882,7 +904,7 @@ theorem algebra_manipexpr_apbeq2cceqiacpbceqm2 (a b c : ℂ) (h₀ : a + b = 2 *
   ring
 
 theorem mathd_numbertheory_370 (n : ℕ) (h₀ : n % 7 = 3) : (2 * n + 1) % 7 = 0 := by
-  sorry
+  omega
 
 theorem mathd_algebra_437 (x y : ℝ) (n : ℤ) (h₀ : x ^ 3 = -45) (h₁ : y ^ 3 = -101) (h₂ : x < n)
   (h₃ : ↑n < y) : n = -4 := by
@@ -922,7 +944,9 @@ theorem induction_divisibility_3div2tooddnp1 (n : ℕ) : 3 ∣ 2 ^ (2 * n + 1) +
 
 theorem mathd_algebra_123 (a b : ℕ) (h₀ : 0 < a ∧ 0 < b) (h₁ : a + b = 20) (h₂ : a = 3 * b) :
   a - b = 10 := by
-  sorry
+  subst h₂
+  simp_all only [ofNat_pos, mul_pos_iff_of_pos_left, and_self]
+  omega
 
 theorem algebra_2varlineareq_xpeeq7_2xpeeq3_eeq11_xeqn4 (x e : ℂ) (h₀ : x + e = 7)
   (h₁ : 2 * x + e = 3) : e = 11 ∧ x = -4 := by
@@ -1007,7 +1031,7 @@ theorem mathd_algebra_206 (a b : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = x ^
   sorry
 
 theorem mathd_numbertheory_92 (n : ℕ) (h₀ : 5 * n % 17 = 8) : n % 17 = 5 := by
-  sorry
+  omega
 
 theorem mathd_algebra_482 (m n : ℕ) (k : ℝ) (f : ℝ → ℝ) (h₀ : Nat.Prime m) (h₁ : Nat.Prime n)
   (h₂ : ∀ x, f x = x ^ 2 - 12 * x + k) (h₃ : f m = 0) (h₄ : f n = 0) (h₅ : m ≠ n) : k = 35 := by
@@ -1022,8 +1046,8 @@ theorem amc12b_2002_p3 (S : Finset ℕ)
 theorem mathd_numbertheory_668 (l r : ZMod 7) (h₀ : l = (2 + 3)⁻¹) (h₁ : r = 2⁻¹ + 3⁻¹) :
   l - r = 1 := by
   subst h₀ h₁
-  sorry
-
+  symm
+  rfl
 
 theorem mathd_algebra_251 (x : ℝ) (h₀ : x ≠ 0) (h₁ : 3 + 1 / x = 7 / x) : x = 2 := by
   simp_all only [ne_eq, one_div]
@@ -1048,7 +1072,11 @@ theorem mathd_algebra_181 (n : ℝ) (h₀ : n ≠ 3) (h₁ : (n + 5) / (n - 3) =
 theorem amc12a_2016_p3 (f : ℝ → ℝ → ℝ)
   (h₀ : ∀ x, ∀ (y) (_ : y ≠ 0), f x y = x - y * Int.floor (x / y)) :
   f (3 / 8) (-(2 / 5)) = -(1 / 40) := by
-  sorry
+  simp_all only [ne_eq, neg_eq_zero, div_eq_zero_iff, OfNat.ofNat_ne_zero, or_self, not_false_eq_true, neg_mul,
+    sub_neg_eq_add, one_div]
+  field_simp
+  ring
+  norm_cast
 
 /- ./././Mathport/Syntax/Translate/Basic.lean:635:2: warning: expanding binder collection (n «expr = » 3) -/
 theorem mathd_algebra_247 (t s : ℝ) (n : ℤ) (h₀ : t = 2 * s - s ^ 2) (h₁ : s = n ^ 2 - 2 ^ n + 1)
