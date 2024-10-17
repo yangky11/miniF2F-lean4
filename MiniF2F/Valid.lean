@@ -112,7 +112,7 @@ theorem imo_1987_p4 (f : ℕ → ℕ) : ∃ n, f (f n) ≠ n + 1987 := by
   sorry
 
 theorem mathd_numbertheory_33 (n : ℕ) (h₀ : n < 398) (h₁ : n * 7 % 398 = 1) : n = 57 := by
-  sorry
+  omega
 
 theorem amc12_2001_p9 (f : ℝ → ℝ) (h₀ : ∀ x > 0, ∀ y > 0, f (x * y) = f x / y) (h₁ : f 500 = 3) :
     f 600 = 5 / 2 := by
@@ -238,7 +238,8 @@ theorem mathd_algebra_101 (x : ℝ) (h₀ : x ^ 2 - 5 * x - 4 ≤ 10) : x ≥ -2
 
 theorem mathd_numbertheory_257 (x : ℕ) (h₀ : 1 ≤ x ∧ x ≤ 100)
     (h₁ : 77 ∣ (∑ k in Finset.range 101, k) - x) : x = 45 := by
-  sorry
+  norm_num at h₁
+  omega
 
 theorem amc12_2000_p5 (x p : ℝ) (h₀ : x < 2) (h₁ : abs (x - 2) = p) : x - p = 2 - 2 * p := by
   suffices abs (x - 2) = -(x - 2) by
@@ -281,7 +282,8 @@ theorem mathd_numbertheory_739 : 9! % 10 = 0 := by
 
 theorem mathd_algebra_245 (x : ℝ) (h₀ : x ≠ 0) :
   (4 / x)⁻¹ * (3 * x ^ 3 / x) ^ 2 * (1 / (2 * x))⁻¹ ^ 3 = 18 * x ^ 8 := by
-  sorry
+  field_simp
+  ring
 
 theorem algebra_apb4leq8ta4pb4 (a b : ℝ) (h₀ : 0 < a ∧ 0 < b) : (a + b) ^ 4 ≤ 8 * (a ^ 4 + b ^ 4) := by
   sorry
@@ -337,7 +339,8 @@ theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := b
 
 theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∣ Nat.sqrt 196) :
     (∑ k in S, k) = 24 := by
-  sorry
+  contrapose! h₀
+  exact ⟨18, by norm_num1⟩
 
 theorem amc12a_2021_p7 (x y : ℝ) : 1 ≤ (x * y - 1) ^ 2 + (x + y) ^ 2 := by
   simp only [sub_eq_add_neg, add_right_comm]
@@ -418,8 +421,9 @@ theorem mathd_numbertheory_42 (S : Set ℕ) (u v : ℕ) (h₀ : ∀ a : ℕ, a �
 
 theorem mathd_algebra_110 (q e : ℂ) (h₀ : q = 2 - 2 * Complex.I) (h₁ : e = 5 + 5 * Complex.I) :
     q * e = 20 := by
-  -- aesop?
-  sorry
+  rw [h₀, h₁]
+  ring
+  norm_num
 
 theorem amc12b_2021_p21 (S : Finset ℝ)
   (h₀ : ∀ x : ℝ, x ∈ S ↔ 0 < x ∧ x ^ (2 : ℝ) ^ Real.sqrt 2 = Real.sqrt 2 ^ (2 : ℝ) ^ x) :
@@ -546,7 +550,7 @@ theorem algebra_binomnegdiscrineq_10alt28asqp1 (a : ℝ) : 10 * a ≤ 28 * a ^ 2
 
 theorem mathd_numbertheory_284 (a b : ℕ) (h₀ : 1 ≤ a ∧ a ≤ 9 ∧ b ≤ 9)
   (h₁ : 10 * a + b = 2 * (a + b)) : 10 * a + b = 18 := by
-  sorry
+  omega
 
 theorem amc12a_2009_p2 : 1 + 1 / (1 + 1 / (1 + 1)) = (5 : ℚ) / 3 := by
   -- aesop?
@@ -572,7 +576,10 @@ theorem mathd_algebra_59 (b : ℝ) (h₀ : (4 : ℝ) ^ b + 2 ^ 3 = 12) : b = 1 :
   sorry
 
 theorem mathd_algebra_234 (d : ℝ) (h₀ : 27 / 125 * d = 9 / 25) : 3 / 5 * d ^ 3 = 25 / 9 := by
-  sorry
+  field_simp
+  noncomm_ring
+  norm_num
+  nlinarith
 
 -- Solution encoded in the theorem statement.
 -- The conclusion is too weak.
@@ -666,10 +673,10 @@ theorem aime_1983_p9 (x : ℝ) (h₀ : 0 < x ∧ x < Real.pi) :
   sorry
 
 theorem mathd_algebra_37 (x y : ℝ) (h₀ : x + y = 7) (h₁ : 3 * x + y = 45) : x ^ 2 - y ^ 2 = 217 := by
-  sorry
+  nlinarith
 
 theorem mathd_numbertheory_458 (n : ℕ) (h₀ : n % 8 = 7) : n % 4 = 3 := by
-  sorry
+  omega
 
 theorem amc12a_2008_p15 (k : ℕ) (h₀ : k = 2008 ^ 2 + 2 ^ 2008) : (k ^ 2 + 2 ^ k) % 10 = 6 := by
   sorry
@@ -902,7 +909,10 @@ theorem mathd_numbertheory_126 (x a : ℕ) (h₀ : 0 < x ∧ 0 < a) (h₁ : Nat.
   sorry
 
 theorem mathd_algebra_323 (σ : Equiv ℝ ℝ) (h : ∀ x, σ.1 x = x ^ 3 - 8) : σ.2 (σ.1 (σ.2 19)) = 3 := by
-  sorry
+  simp
+  rw [Equiv.symm_apply_eq]
+  norm_num at h
+  linarith [h 3]
 
 theorem mathd_algebra_421 (a b c d : ℝ) (h₀ : b = a ^ 2 + 4 * a + 6)
   (h₁ : b = 1 / 2 * a ^ 2 + a + 6) (h₂ : d = c ^ 2 + 4 * c + 6) (h₃ : d = 1 / 2 * c ^ 2 + c + 6)
@@ -934,7 +944,7 @@ theorem algebra_manipexpr_apbeq2cceqiacpbceqm2 (a b c : ℂ) (h₀ : a + b = 2 *
   ring
 
 theorem mathd_numbertheory_370 (n : ℕ) (h₀ : n % 7 = 3) : (2 * n + 1) % 7 = 0 := by
-  sorry
+  omega
 
 theorem mathd_algebra_437 (x y : ℝ) (n : ℤ) (h₀ : x ^ 3 = -45) (h₁ : y ^ 3 = -101) (h₂ : x < n)
   (h₃ : ↑n < y) : n = -4 := by
@@ -975,7 +985,7 @@ theorem induction_divisibility_3div2tooddnp1 (n : ℕ) : 3 ∣ 2 ^ (2 * n + 1) +
 
 theorem mathd_algebra_123 (a b : ℕ) (h₀ : 0 < a ∧ 0 < b) (h₁ : a + b = 20) (h₂ : a = 3 * b) :
   a - b = 10 := by
-  sorry
+  omega
 
 theorem algebra_2varlineareq_xpeeq7_2xpeeq3_eeq11_xeqn4 (x e : ℂ) (h₀ : x + e = 7)
   (h₁ : 2 * x + e = 3) : e = 11 ∧ x = -4 := by
@@ -1064,7 +1074,7 @@ theorem mathd_algebra_206 (a b : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = x ^
   sorry
 
 theorem mathd_numbertheory_92 (n : ℕ) (h₀ : 5 * n % 17 = 8) : n % 17 = 5 := by
-  sorry
+  omega
 
 theorem mathd_algebra_482 (m n : ℕ) (k : ℝ) (f : ℝ → ℝ) (h₀ : Nat.Prime m) (h₁ : Nat.Prime n)
   (h₂ : ∀ x, f x = x ^ 2 - 12 * x + k) (h₃ : f m = 0) (h₄ : f n = 0) (h₅ : m ≠ n) : k = 35 := by
@@ -1106,7 +1116,9 @@ theorem mathd_algebra_181 (n : ℝ) (h₀ : n ≠ 3) (h₁ : (n + 5) / (n - 3) =
 theorem amc12a_2016_p3 (f : ℝ → ℝ → ℝ)
   (h₀ : ∀ x, ∀ (y) (_ : y ≠ 0), f x y = x - y * Int.floor (x / y)) :
   f (3 / 8) (-(2 / 5)) = -(1 / 40) := by
-  sorry
+  norm_num [h₀]
+  field_simp
+  norm_cast
 
 /- ./././Mathport/Syntax/Translate/Basic.lean:635:2: warning: expanding binder collection (n «expr = » 3) -/
 theorem mathd_algebra_247 (t s : ℝ) (n : ℤ) (h₀ : t = 2 * s - s ^ 2) (h₁ : s = n ^ 2 - 2 ^ n + 1)
