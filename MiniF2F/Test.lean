@@ -532,7 +532,7 @@ theorem mathd_algebra_80
 theorem mathd_numbertheory_457
   (n : ℕ)
   (h₀ : 0 < n)
-  (h₁ : 80325∣(n!)) :
+  (h₁ : 80325∣(n !)) :
   17 ≤ n := by sorry
 
 theorem amc12_2000_p12
@@ -667,7 +667,7 @@ theorem amc12a_2020_p4
 theorem amc12b_2020_p6
   (n : ℕ)
   (h₀ : 9 ≤ n) :
-  ∃ (x : ℕ), (x : ℝ)^2 = (Nat.factorial (n + 2) - Nat.factorial (n + 1)) / n! := by sorry
+  ∃ (x : ℕ), (x : ℝ)^2 = (Nat.factorial (n + 2) - Nat.factorial (n + 1)) / n ! := by sorry
 
 theorem mathd_numbertheory_435
   (k : ℕ)
@@ -816,7 +816,7 @@ theorem amc12a_2002_p6
 
 theorem amc12a_2003_p23
   (S : Finset ℕ)
-  (h₀ : ∀ (k : ℕ), k ∈ S ↔ 0 < k ∧ ((k * k) : ℕ) ∣ (∏ i in (Finset.Icc 1 9), i!)) :
+  (h₀ : ∀ (k : ℕ), k ∈ S ↔ 0 < k ∧ ((k * k) : ℕ) ∣ (∏ i in (Finset.Icc 1 9), i !)) :
   S.card = 672 := by sorry
 
 theorem mathd_algebra_129
