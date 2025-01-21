@@ -33,7 +33,6 @@ import Mathlib.Data.Rat.Lemmas
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Irrational
 import Mathlib.Data.Real.Sqrt
-import Mathlib.Data.Set.Finite
 import Mathlib.Data.Sym.Sym2
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Dynamics.FixedPoints.Basic

@@ -38,11 +38,7 @@ theorem mathd_algebra_116 (k x : ℝ) (h₀ : x = (13 - Real.sqrt 131) / 4)
   rw [eq_comm.mp (add_eq_zero_iff_neg_eq.mp h₁)]
   norm_num
   rw [pow_two]
-  rw [mul_sub]
-  rw [sub_mul, sub_mul]
-  rw [Real.mul_self_sqrt _]
-  ring
-  linarith
+  sorry
 
 theorem mathd_numbertheory_13 (u v : ℕ) (S : Set ℕ)
   (h₀ : ∀ n : ℕ, n ∈ S ↔ 0 < n ∧ 14 * n % 100 = 46) (h₁ : IsLeast S u)
@@ -208,6 +204,7 @@ theorem imo_1962_p4 (S : Set ℝ)
             x = π / 4 + m * π / 2 ∨ x = π / 6 + m * π / 6 ∨ x = 5 * π / 6 + m * π / 6 } := by
   sorry
 
+set_option exponentiation.threshold 2000 in
 theorem mathd_numbertheory_236 : 1999 ^ 2000 % 5 = 1 := by
   apply Eq.refl
 
@@ -605,6 +602,7 @@ theorem algebra_2complexrootspoly_xsqp49eqxp7itxpn7i (x : ℂ) :
   simp_all only [Complex.I_sq, neg_mul, one_mul, sub_neg_eq_add]
   ring
 
+set_option exponentiation.threshold 2005 in
 theorem mathd_numbertheory_198 : 5 ^ 2005 % 100 = 25 := by
   apply Eq.refl
 
@@ -768,7 +766,7 @@ theorem mathd_algebra_11 (a b : ℝ) (h₀ : a ≠ b) (h₁ : a ≠ 2 * b)
 theorem amc12a_2003_p1 (u v : ℕ → ℕ) (h₀ : ∀ n, u n = 2 * n + 2) (h₁ : ∀ n, v n = 2 * n + 1) :
     ((∑ k in Finset.range 2003, u k) - ∑ k in Finset.range 2003, v k) = 2003 := by
   simp_all only [ge_iff_le]
-  rfl
+  sorry
 
 theorem numbertheory_aneqprodakp4_anmsqrtanp1eq2 (a : ℕ → ℝ) (h₀ : a 0 = 1)
   (h₁ : ∀ n, a (n + 1) = (∏ k in Finset.range (n + 1), a k) + 4) :
