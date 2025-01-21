@@ -459,7 +459,7 @@ theorem algebra_2varlineareq_fp3zeq11_3tfm1m5zeqn68_feqn10_zeq7
 
 theorem mathd_numbertheory_247
   (n : ℕ)
-  (h₀ : (3 * n) % 2 = 11) :
+  (h₀ : (3 * n) % 11 = 2) :
   n % 11 = 8 := by sorry
 
 theorem induction_pord1p1on2powklt5on2
