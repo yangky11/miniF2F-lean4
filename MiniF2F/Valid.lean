@@ -316,7 +316,7 @@ theorem algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x :
 theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := by
   rw [Nat.mul_mod, h₀]
 
-theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : S, n ∣ Nat.sqrt 196) :
+theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n ∈ S, n ∣ Nat.sqrt 196) :
     (∑ k in S, k) = 24 := by
   sorry
 
