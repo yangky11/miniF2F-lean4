@@ -222,7 +222,7 @@ theorem mathd_algebra_176
 theorem induction_nfactltnexpnm1ngt3
   (n : ℕ)
   (h₀ : 3 ≤ n) :
-  n! < n^(n - 1) := by sorry
+  (n)! < n^(n - 1) := by sorry
 
 theorem mathd_algebra_208 :
   Real.sqrt 1000000 - 1000000^(1/3) = 900 := by sorry
