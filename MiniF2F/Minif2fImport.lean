@@ -1,14 +1,14 @@
 import Mathlib.Algebra.Algebra.Basic
 import Mathlib.Algebra.Order.Floor
-import Mathlib.Algebra.Associated.Basic
-import Mathlib.Algebra.Associated.OrderedCommMonoid
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.GeomSum
 import Mathlib.Algebra.Group.Pi.Basic
 import Mathlib.Algebra.Group.Commute.Basic
+import Mathlib.Algebra.Order.Monoid.Associated
 import Mathlib.Algebra.Order.Floor
 import Mathlib.Algebra.QuadraticDiscriminant
 import Mathlib.Algebra.Ring.Basic
+import Mathlib.Algebra.Ring.Associated
 import Mathlib.Analysis.Asymptotics.AsymptoticEquivalent
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.SpecialFunctions.Log.Base
