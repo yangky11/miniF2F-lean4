@@ -124,7 +124,8 @@ theorem imo_1960_p2
   (x : ℝ)
   (h₀ : 0 ≤ 1 + 2 * x)
   (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
-  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9)
+  (h₃ : x ≠ 0) :
   -(1 / 2) ≤ x ∧ x < 45 / 8 := by sorry
 
 theorem mathd_numbertheory_427
@@ -583,7 +584,7 @@ theorem imo_1981_p6
   (h₀ : ∀ y, f 0 y = y + 1)
   (h₁ : ∀ x, f (x + 1) 0 = f x 1)
   (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
-  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by sorry
+  f 4 1981 = 2^(2^(2^(2^2))) - 3 := by sorry
 
 theorem mathd_algebra_263
   (y : ℝ)
