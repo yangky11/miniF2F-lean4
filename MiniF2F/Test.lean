@@ -124,7 +124,8 @@ theorem imo_1960_p2
   (x : ℝ)
   (h₀ : 0 ≤ 1 + 2 * x)
   (h₁ : (1 - Real.sqrt (1 + 2 * x))^2 ≠ 0)
-  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9) :
+  (h₂ : (4 * x^2) / (1 - Real.sqrt (1 + 2*x))^2 < 2*x + 9)
+  (h₃ : x ≠ 0) :
   -(1 / 2) ≤ x ∧ x < 45 / 8 := by sorry
 
 theorem mathd_numbertheory_427
@@ -376,7 +377,6 @@ theorem amc12b_2021_p9 :
   (Real.log 80 / Real.log 2) / (Real.log 2 / Real.log 40) - (Real.log 160 / Real.log 2) / (Real.log 2 / Real.log 20) = 2 := by sorry
 
 theorem aime_1994_p3
-  (x : ℤ)
   (f : ℤ → ℤ)
   (h0 : f x + f (x-1) = x^2)
   (h1 : f 19 = 94):
@@ -580,10 +580,15 @@ theorem induction_sumkexp3eqsumksq
 
 theorem imo_1981_p6
   (f : ℕ → ℕ → ℕ)
+  (g : ℕ → ℕ)
   (h₀ : ∀ y, f 0 y = y + 1)
   (h₁ : ∀ x, f (x + 1) 0 = f x 1)
-  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y)) :
-  ∀ y, f 4 (y + 1) = 2^(f 4 y + 3) - 3 := by sorry
+  (h₂ : ∀ x y, f (x + 1) (y + 1) = f x (f (x + 1) y))
+  (h₃ : g 0 = 2)
+  (h₄ : ∀ n, g (n + 1) = 2^(g n)) :
+  f 4 1981 = g 1983 - 3 := by
+sorry
+
 
 theorem mathd_algebra_263
   (y : ℝ)
