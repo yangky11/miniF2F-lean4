@@ -1,6 +1,6 @@
 # miniF2F-lean4
 
-⚠️ This repo is not maintained regularly. Use your own discretion.
+⚠️ This repo is NOT maintained regularly. Use your own discretion.
 
 
 ## Building
