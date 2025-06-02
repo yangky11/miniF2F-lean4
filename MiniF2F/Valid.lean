@@ -313,7 +313,7 @@ theorem algebra_amgm_faxinrrp2msqrt2geq2mxm1div2x :
 theorem mathd_numbertheory_335 (n : ℕ) (h₀ : n % 7 = 5) : 5 * n % 7 = 4 := by
   rw [Nat.mul_mod, h₀]
 
-theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n ∈ S, n ∣ Nat.sqrt 196) :
+theorem mathd_numbertheory_35 (S : Finset ℕ) (h₀ : ∀ n : ℕ, n ∈ S ↔ n ∣ Nat.sqrt 196) :
     (∑ k ∈ S, k) = 24 := by
   sorry
 
@@ -777,7 +777,7 @@ theorem algebra_2rootspoly_apatapbeq2asqp2ab (a b : ℂ) :
     (a + a) * (a + b) = 2 * a ^ 2 + 2 * (a * b) := by
   ring
 
-theorem induction_sum_odd (n : ℕ) : (∑ k ∈ Finset.range n, 2 * k) + 1 = n ^ 2 := by
+theorem induction_sum_odd (n : ℕ) : (∑ k ∈ Finset.range n, (2 * k + 1)) = n ^ 2 := by
   sorry
 
 theorem mathd_algebra_568 (a : ℝ) :
@@ -1050,7 +1050,7 @@ theorem amc12a_2016_p3 (f : ℝ → ℝ → ℝ)
 
 /- ./././Mathport/Syntax/Translate/Basic.lean:635:2: warning: expanding binder collection (n «expr = » 3) -/
 theorem mathd_algebra_247 (t s : ℝ) (n : ℤ) (h₀ : t = 2 * s - s ^ 2) (h₁ : s = n ^ 2 - 2 ^ n + 1)
-  (n) (_ : n = 3) : t = 0 := by
+  (_ : n = 3) : t = 0 := by
   sorry
 
 theorem algebra_sqineq_2unitcircatblt1 (a b : ℝ) (h₀ : a ^ 2 + b ^ 2 = 2) : a * b ≤ 1 := by
