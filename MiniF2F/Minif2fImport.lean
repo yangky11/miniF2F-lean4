@@ -1,5 +1,5 @@
 import Mathlib.Algebra.Algebra.Basic
-import Mathlib.Algebra.Order.Floor.Defs
+import Mathlib.Algebra.Order.Floor
 import Mathlib.Algebra.BigOperators.Pi
 import Mathlib.Algebra.GeomSum
 import Mathlib.Algebra.Group.Pi.Basic
