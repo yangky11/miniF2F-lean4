@@ -5,7 +5,6 @@ import Mathlib.Algebra.GeomSum
 import Mathlib.Algebra.Group.Pi.Basic
 import Mathlib.Algebra.Group.Commute.Basic
 import Mathlib.Algebra.Order.Monoid.Associated
-import Mathlib.Algebra.Order.Floor
 import Mathlib.Algebra.QuadraticDiscriminant
 import Mathlib.Algebra.Ring.Basic
 import Mathlib.Algebra.Ring.Associated
