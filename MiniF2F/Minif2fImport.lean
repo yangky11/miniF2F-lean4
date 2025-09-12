@@ -22,7 +22,7 @@ import Mathlib.Data.List.Intervals
 import Mathlib.Data.List.Palindrome
 import Mathlib.Data.Multiset.Basic
 import Mathlib.Data.Nat.Choose.Basic
-import Mathlib.Data.Nat.Digits
+import Mathlib.Data.Nat.Digits.Lemmas
 import Mathlib.Data.Nat.Factorial.Basic
 import Mathlib.Data.Nat.ModEq
 import Mathlib.Data.Nat.Multiplicity
