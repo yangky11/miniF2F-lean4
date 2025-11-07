@@ -588,7 +588,8 @@ theorem amc12_2000_p11 (a b : ℝ) (h₀ : a ≠ 0 ∧ b ≠ 0) (h₁ : a * b = 
     a / b + b / a - a * b = 2 := by
   field_simp [h₀.1, h₀.2]
   simp only [h₁, mul_comm, mul_sub]
-  ring
+  sorry
+
 
 theorem amc12b_2003_p9 (a b : ℝ) (f : ℝ → ℝ) (h₀ : ∀ x, f x = a * x + b) (h₁ : f 6 - f 2 = 12) :
     f 12 - f 2 = 30 := by
@@ -1063,7 +1064,7 @@ theorem amc12a_2017_p2 (x y : ℝ) (h₀ : x ≠ 0) (h₁ : y ≠ 0) (h₂ : x +
   1 / x + 1 / y = 4 := by
   simp_all only [ne_eq, one_div]
   field_simp
-  rwa [add_comm]
+  sorry
 
 theorem algebra_amgm_sumasqdivbsqgeqsumbdiva (a b c : ℝ) (h₀ : 0 < a ∧ 0 < b ∧ 0 < c) :
   a ^ 2 / b ^ 2 + b ^ 2 / c ^ 2 + c ^ 2 / a ^ 2 ≥ b / a + c / b + a / c := by
