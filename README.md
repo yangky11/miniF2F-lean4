@@ -12,9 +12,6 @@ lake exe cache get
 lake build
 ```
 
-You can rebuild the `minif2f_lean4.jsonl` file from lean files using the `rebuild_jsonl.py` script to update the formal statements and proofs. (It will not change the `id`, `split`, `header` and informal fields, though.)
-
-> `id` is not the real name of the theorem. Please use `name`.
 
 ## Related Links
 
